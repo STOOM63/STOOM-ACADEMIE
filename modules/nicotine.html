@@ -1,20 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Nicotine et dépendance</title>
-
-<link rel="stylesheet" href="../style.css">
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Académie STOOM — Nicotine et dépendance</title>
-
-  <!-- Si ton ../style.css écrase le design, commente la ligne ci-dessous -->
-  <!-- <link rel="stylesheet" href="../style.css"> -->
 
   <style>
     :root{
@@ -32,10 +21,14 @@
       --shadow2:0 18px 55px rgba(0,0,0,.45);
       --r:18px;
     }
-    *{ box-sizing:border-box; }
+
+    *{
+      box-sizing:border-box;
+    }
+
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      font-family:ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
       color:var(--text);
       background:
         radial-gradient(900px 450px at 12% 10%, rgba(77,163,255,.22), transparent 60%),
@@ -43,10 +36,18 @@
         radial-gradient(900px 520px at 50% 120%, rgba(255,255,255,.06), transparent 55%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
     }
-    a{ color:inherit; text-decoration:none; }
-    .wrap{ max-width:1100px; margin:0 auto; padding:22px; }
 
-    /* Topbar */
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:22px;
+    }
+
     .topbar{
       display:flex;
       gap:12px;
@@ -55,6 +56,7 @@
       flex-wrap:wrap;
       margin-bottom:14px;
     }
+
     .crumbs{
       display:flex;
       gap:10px;
@@ -62,13 +64,17 @@
       color:rgba(183,195,255,.85);
       font-size:13px;
     }
+
     .crumbs a{
       border:1px solid var(--line);
       background:rgba(255,255,255,.04);
       padding:8px 10px;
       border-radius:12px;
     }
-    .crumbs a:hover{ background:rgba(255,255,255,.06); }
+
+    .crumbs a:hover{
+      background:rgba(255,255,255,.06);
+    }
 
     .btn{
       border:1px solid rgba(77,163,255,.35);
@@ -80,33 +86,39 @@
       font-size:13px;
       display:inline-flex;
       align-items:center;
+      justify-content:center;
       gap:10px;
       cursor:pointer;
       transition:.18s;
       user-select:none;
     }
+
     .btn:hover{
       transform:translateY(-1px);
       background:rgba(77,163,255,.16);
       box-shadow:0 14px 30px rgba(0,0,0,.25);
     }
+
     .btn.secondary{
       border-color:var(--line);
       background:rgba(255,255,255,.04);
       font-weight:650;
     }
-    .btn.secondary:hover{ background:rgba(255,255,255,.06); }
 
-    /* Hero */
+    .btn.secondary:hover{
+      background:rgba(255,255,255,.06);
+    }
+
     .hero{
       border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
       border-radius:calc(var(--r) + 6px);
       padding:18px;
       box-shadow:var(--shadow);
       overflow:hidden;
       position:relative;
     }
+
     .hero::before{
       content:"";
       position:absolute;
@@ -117,7 +129,11 @@
       pointer-events:none;
       opacity:.8;
     }
-    .hero > *{ position:relative; }
+
+    .hero > *{
+      position:relative;
+    }
+
     .kicker{
       display:inline-flex;
       align-items:center;
@@ -126,15 +142,37 @@
       font-size:13px;
       margin-bottom:10px;
     }
+
     .dot{
-      width:10px;height:10px;border-radius:50%;
+      width:10px;
+      height:10px;
+      border-radius:50%;
       background:var(--accent);
       box-shadow:0 0 0 4px rgba(77,163,255,.16);
     }
-    h1{ margin:0; font-size:24px; letter-spacing:.2px; line-height:1.15; }
-    .sub{ margin:10px 0 0 0; color:var(--muted); font-size:14px; line-height:1.6; max-width:75ch; }
 
-    .pillRow{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    h1{
+      margin:0;
+      font-size:24px;
+      letter-spacing:.2px;
+      line-height:1.15;
+    }
+
+    .sub{
+      margin:10px 0 0 0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+      max-width:80ch;
+    }
+
+    .pillRow{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
     .pill{
       font-size:12px;
       color:rgba(234,240,255,.92);
@@ -146,20 +184,23 @@
       gap:8px;
       align-items:center;
     }
+
     .pDot{
-      width:8px;height:8px;border-radius:50%;
+      width:8px;
+      height:8px;
+      border-radius:50%;
       background:var(--accent2);
       box-shadow:0 0 0 4px rgba(43,217,168,.12);
     }
 
-    /* Layout */
     .layout{
       margin-top:14px;
       display:grid;
-      grid-template-columns: 1.35fr .65fr;
+      grid-template-columns:1.35fr .65fr;
       gap:14px;
       align-items:start;
     }
+
     .panel{
       border:1px solid var(--line);
       background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
@@ -167,6 +208,7 @@
       box-shadow:var(--shadow);
       overflow:hidden;
     }
+
     .panelHead{
       padding:14px 14px 10px 14px;
       border-left:4px solid var(--accent);
@@ -175,7 +217,13 @@
       justify-content:space-between;
       gap:10px;
     }
-    .panelHead h2{ margin:0; font-size:15px; letter-spacing:.2px; }
+
+    .panelHead h2{
+      margin:0;
+      font-size:15px;
+      letter-spacing:.2px;
+    }
+
     .panelBody{
       padding:0 14px 14px 14px;
       color:var(--muted2);
@@ -183,10 +231,19 @@
       line-height:1.75;
     }
 
-    /* Mobile readability */
-    .panelBody p{ margin:10px 0; }
-    .panelBody ul{ margin:8px 0 12px 18px; padding:0; }
-    .panelBody li{ margin:7px 0; }
+    .panelBody p{
+      margin:10px 0;
+    }
+
+    .panelBody ul{
+      margin:8px 0 12px 18px;
+      padding:0;
+    }
+
+    .panelBody li{
+      margin:7px 0;
+    }
+
     .sectionTitle{
       margin:14px 0 6px 0;
       color:#fff;
@@ -203,6 +260,7 @@
       margin:12px 0;
       color:rgba(234,240,255,.95);
     }
+
     .warn{
       border:1px solid rgba(255,204,102,.25);
       background:rgba(255,204,102,.08);
@@ -211,6 +269,7 @@
       margin:12px 0;
       color:rgba(234,240,255,.95);
     }
+
     .danger{
       border:1px solid rgba(255,107,107,.25);
       background:rgba(255,107,107,.08);
@@ -227,6 +286,7 @@
       margin:10px 0;
       overflow:hidden;
     }
+
     summary{
       cursor:pointer;
       list-style:none;
@@ -237,56 +297,99 @@
       gap:12px;
       user-select:none;
     }
-    summary::-webkit-details-marker{ display:none; }
-    .sumLeft{ min-width:0; }
-    .sumTitle{ font-weight:850; font-size:13px; color:#fff; line-height:1.25; }
-    .sumSub{ font-size:12px; color:rgba(183,195,255,.85); margin-top:4px; line-height:1.35; }
+
+    summary::-webkit-details-marker{
+      display:none;
+    }
+
+    .sumLeft{
+      min-width:0;
+    }
+
+    .sumTitle{
+      font-weight:850;
+      font-size:13px;
+      color:#fff;
+      line-height:1.25;
+    }
+
+    .sumSub{
+      font-size:12px;
+      color:rgba(183,195,255,.85);
+      margin-top:4px;
+      line-height:1.35;
+    }
+
     .chev{
-      width:32px;height:32px;border-radius:12px;
-      display:grid;place-items:center;
+      width:32px;
+      height:32px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
       border:1px solid rgba(255,255,255,.12);
       background:rgba(255,255,255,.04);
       flex:0 0 auto;
     }
+
     details[open] .chev{
       background:rgba(77,163,255,.12);
       border-color:rgba(77,163,255,.35);
     }
-    .dBody{ padding:0 12px 12px 12px; }
+
+    .dBody{
+      padding:0 12px 12px 12px;
+    }
+
+    .tableWrap{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      overflow:hidden;
+      background:rgba(0,0,0,.10);
+      margin:12px 0;
+    }
+
+    .scrollX{
+      overflow:auto;
+      -webkit-overflow-scrolling:touch;
+    }
 
     table{
       width:100%;
       border-collapse:collapse;
-      margin:10px 0 12px 0;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:14px;
-      overflow:hidden;
+      min-width:620px;
     }
+
     th, td{
-      padding:10px 10px;
+      padding:12px 12px;
       border-bottom:1px solid rgba(255,255,255,.08);
       text-align:left;
       vertical-align:top;
       font-size:13px;
       color:rgba(234,240,255,.92);
     }
+
     th{
       color:#fff;
       background:rgba(255,255,255,.05);
-      font-weight:850;
+      font-weight:900;
     }
-    tr:last-child td{ border-bottom:none; }
+
+    tr:last-child td{
+      border-bottom:none;
+    }
 
     .check{
       list-style:none;
       margin:10px 0 0 0;
       padding:0;
     }
+
     .check li{
       margin:10px 0;
       padding-left:26px;
       position:relative;
     }
+
     .check li::before{
       content:"✓";
       position:absolute;
@@ -305,210 +408,37 @@
     }
 
     @media (max-width:900px){
-      .layout{ grid-template-columns: 1fr; }
+      .layout{
+        grid-template-columns:1fr;
+      }
     }
+
     @media (max-width:600px){
-      .wrap{ padding:12px; }
-      h1{ font-size:20px; }
-      .sub{ font-size:13px; }
-      .btn{ width:100%; justify-content:center; }
-      .topbar{ gap:10px; }
+      .wrap{
+        padding:12px;
+      }
+
+      h1{
+        font-size:20px;
+      }
+
+      .sub{
+        font-size:13px;
+      }
+
+      .btn{
+        width:100%;
+        justify-content:center;
+      }
+
+      .topbar{
+        gap:10px;
+      }
     }
   </style>
 </head>
 
 <body>
-
-<section class="modules">
-
-<div class="card">
-
-<h2>Comprendre la dépendance au tabac</h2>
-
-<p>
-
-La dépendance au tabac est principalement liée à la nicotine.
-
-Lorsque la nicotine est inhalée, elle atteint le cerveau en quelques secondes et agit sur certains récepteurs appelés récepteurs nicotiniques.
-
-Cette stimulation provoque la libération de dopamine, un neurotransmetteur associé à la sensation de plaisir et de récompense.
-
-Avec le temps, le cerveau s'habitue à recevoir régulièrement de la nicotine.
-
-Lorsque l'apport de nicotine diminue ou disparaît, le corps peut ressentir différents symptômes de manque.
-
-Ces symptômes peuvent inclure :
-
-irritabilité
-
-stress
-
-difficulté de concentration
-
-envie forte de fumer
-
-fatigue
-
-Le rôle de la cigarette électronique est d'apporter de la nicotine sans combustion du tabac afin d'éviter ces symptômes de manque.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>La nicotine n'est pas le principal danger du tabac</h2>
-
-<p>
-
-Beaucoup de personnes pensent que la nicotine est la principale cause des maladies liées au tabac.
-
-En réalité, le danger du tabac provient principalement de la combustion.
-
-Lorsque le tabac brûle, il produit plusieurs milliers de substances chimiques dont de nombreuses sont toxiques ou cancérigènes.
-
-La cigarette électronique fonctionne différemment car elle ne brûle pas de tabac.
-
-Elle chauffe simplement un liquide afin de produire un aérosol.
-
-La nicotine reste une substance addictive mais elle n'est pas responsable de la majorité des maladies liées au tabagisme.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Le rôle de la nicotine dans la vape</h2>
-
-<p>
-
-Dans la cigarette électronique, la nicotine a pour objectif principal d'éviter les sensations de manque.
-
-Un dosage adapté permet au fumeur de remplacer la cigarette sans ressentir une frustration importante.
-
-Un dosage trop faible peut entraîner une envie persistante de fumer et conduire à une rechute vers la cigarette.
-
-À l'inverse, un dosage trop élevé peut provoquer :
-
-une irritation de la gorge
-
-des sensations de nausée
-
-des maux de tête
-
-Le rôle du vendeur est donc de proposer un dosage équilibré adapté au profil du fumeur.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Adapter le dosage de nicotine</h2>
-
-<p>
-
-Le dosage de nicotine doit être choisi en fonction de la consommation de cigarettes.
-
-Plus un fumeur consomme de cigarettes, plus son besoin en nicotine est généralement élevé.
-
-Chez STOOM, on utilise souvent les repères suivants :
-
-fumeurs de 5 à 10 cigarettes par jour : 3 mg ou 6 mg
-
-fumeurs de 10 à 15 cigarettes par jour : 6 mg ou 12 mg
-
-fumeurs de 15 à 20 cigarettes par jour : 10 mg en sel de nicotine
-
-fumeurs de plus de 20 cigarettes par jour : 20 mg en sel de nicotine
-
-Ces repères doivent être adaptés en fonction des sensations du client.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Nicotine et puissance du matériel</h2>
-
-<p>
-
-Le choix du matériel est directement lié au taux de nicotine utilisé.
-
-Plus le taux de nicotine est élevé, moins le matériel doit être puissant.
-
-Un matériel trop puissant avec un taux de nicotine élevé peut provoquer un hit trop fort et rendre la vape désagréable.
-
-À l'inverse, un matériel très peu puissant avec un taux de nicotine très faible peut ne pas satisfaire les besoins du fumeur.
-
-Le vendeur doit donc toujours associer correctement :
-
-le taux de nicotine
-
-la puissance du matériel
-
-le type de tirage
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Réduction progressive de la nicotine</h2>
-
-<p>
-
-Certaines personnes souhaitent progressivement réduire leur consommation de nicotine.
-
-Cette réduction doit se faire progressivement.
-
-Passer directement d'un dosage élevé à un liquide sans nicotine peut entraîner une sensation de manque et un risque de rechute vers la cigarette.
-
-Une stratégie souvent utilisée consiste à diminuer progressivement les dosages au fil du temps.
-
-L'objectif principal reste d'éviter le retour au tabac.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Erreurs fréquentes</h2>
-
-<p>
-
-Certaines erreurs sont fréquentes chez les nouveaux vapoteurs.
-
-Choisir un taux de nicotine trop faible par peur de la nicotine.
-
-Utiliser un matériel puissant avec un dosage élevé.
-
-Passer trop rapidement à un liquide sans nicotine.
-
-Le rôle du vendeur est d'expliquer ces points et d'accompagner le client dans son sevrage tabagique.
-
-</p>
-
-</div>
-
-</section>
-
   <div class="wrap">
 
     <div class="topbar">
@@ -517,74 +447,99 @@ Le rôle du vendeur est d'expliquer ces points et d'accompagner le client dans s
         <span>•</span>
         <span>Module</span>
       </div>
+
       <a class="btn secondary" href="quiz.html">Aller au quiz</a>
     </div>
 
     <header class="hero">
-      <div class="kicker"><span class="dot"></span>Académie STOOM • Module</div>
+      <div class="kicker">
+        <span class="dot"></span>
+        Académie STOOM • Module
+      </div>
+
       <h1>Nicotine et dépendance</h1>
+
       <p class="sub">
-        Comprendre la dépendance, expliquer la place de la nicotine dans le sevrage, choisir le bon dosage
-        et associer correctement nicotine ↔ puissance ↔ tirage.
+        Comprendre la dépendance, expliquer la place de la nicotine dans le sevrage,
+        choisir le bon dosage et associer correctement nicotine, puissance et tirage.
       </p>
+
       <div class="pillRow">
         <span class="pill"><span class="pDot"></span>Sevrage</span>
         <span class="pill">Dosages</span>
         <span class="pill">Conseil</span>
+        <span class="pill">Prévention rechute</span>
       </div>
     </header>
 
     <main class="layout">
 
-      <!-- CONTENU -->
       <section class="panel">
         <div class="panelHead">
           <h2>Le contenu du module</h2>
         </div>
+
         <div class="panelBody">
 
           <div class="sectionTitle">1) Comprendre la dépendance au tabac</div>
+
           <p>
-            La dépendance au tabac est principalement liée à la nicotine. Inhalée, elle atteint le cerveau rapidement
-            et agit sur des récepteurs nicotiniques, ce qui provoque notamment une libération de dopamine
-            (sensation de récompense).
+            La dépendance au tabac est principalement liée à la nicotine.
+            Lorsqu’elle est inhalée, elle atteint rapidement le cerveau et agit sur des récepteurs nicotiniques.
+            Cette stimulation participe à la sensation de récompense et renforce l’habitude de consommation.
           </p>
+
           <p>
-            Avec le temps, le cerveau s’habitue à recevoir régulièrement de la nicotine. Quand l’apport diminue,
-            des symptômes de manque peuvent apparaître.
+            Avec le temps, le cerveau s’habitue à recevoir régulièrement de la nicotine.
+            Lorsque l’apport diminue brutalement, des symptômes de manque peuvent apparaître.
           </p>
+
           <div class="warn">
-            <strong>Symptômes fréquents :</strong>
+            <strong>Symptômes fréquents du manque :</strong>
             <ul>
-              <li>Irritabilité</li>
-              <li>Stress</li>
-              <li>Difficulté de concentration</li>
-              <li>Envie forte de fumer</li>
-              <li>Fatigue</li>
+              <li>irritabilité ;</li>
+              <li>stress ;</li>
+              <li>difficulté de concentration ;</li>
+              <li>envie forte de fumer ;</li>
+              <li>fatigue ou nervosité ;</li>
+              <li>impression de ne pas être “satisfait”.</li>
             </ul>
           </div>
+
           <div class="callout">
-            <strong>Rôle de la vape :</strong> apporter de la nicotine sans combustion du tabac pour éviter le manque.
+            <strong>Rôle de la vape :</strong> apporter de la nicotine sans combustion du tabac
+            afin de limiter le manque et de réduire le risque de rechute.
           </div>
 
           <div class="sectionTitle">2) La nicotine n’est pas le principal danger du tabac</div>
+
           <p>
-            Beaucoup de personnes pensent que la nicotine est la cause principale des maladies liées au tabac.
-            En réalité, le danger provient surtout de la <strong>combustion</strong>.
+            Beaucoup de clients pensent que la nicotine est la cause principale des maladies liées au tabac.
+            Il faut expliquer avec pédagogie que le danger majeur de la cigarette vient surtout de la combustion.
           </p>
+
           <p>
-            La combustion produit des milliers de substances, dont beaucoup sont toxiques ou cancérigènes.
-            La cigarette électronique fonctionne différemment : elle <strong>chauffe un liquide</strong> pour produire un aérosol,
+            Quand le tabac brûle, il produit de nombreuses substances toxiques.
+            La cigarette électronique fonctionne différemment : elle chauffe un liquide pour produire un aérosol,
             sans brûler de tabac.
           </p>
+
           <div class="callout">
-            <strong>Message vendeur :</strong> la nicotine est addictive, mais ce n’est pas elle qui explique l’essentiel
-            des risques du tabagisme (c’est la combustion).
+            <strong>Message vendeur :</strong> la nicotine est addictive, mais dans le cadre du sevrage,
+            elle sert surtout à éviter le manque. L’objectif prioritaire est de ne pas retourner vers la cigarette.
+          </div>
+
+          <div class="warn">
+            <strong>Posture STOOM :</strong><br>
+            Ne jamais faire culpabiliser le client sur la nicotine.
+            On l’accompagne pour qu’il avance à son rythme, sans rechute.
           </div>
 
           <div class="sectionTitle">3) Le rôle de la nicotine dans la vape</div>
+
           <p>
-            Dans la vape, la nicotine sert principalement à éviter la sensation de manque.
+            Dans la vape, la nicotine sert principalement à maintenir une sensation de satiété
+            et à éviter les symptômes de manque.
             Un dosage adapté permet de remplacer la cigarette sans frustration importante.
           </p>
 
@@ -592,13 +547,15 @@ Le rôle du vendeur est d'expliquer ces points et d'accompagner le client dans s
             <summary>
               <div class="sumLeft">
                 <div class="sumTitle">Dosage trop faible</div>
-                <div class="sumSub">Manque → envie de cigarette → rechute</div>
+                <div class="sumSub">Manque → envie de cigarette → risque de rechute</div>
               </div>
               <div class="chev">⌄</div>
             </summary>
+
             <div class="dBody">
               <p>
-                Un dosage trop faible peut entraîner une envie persistante de fumer et conduire au retour vers la cigarette.
+                Un dosage trop faible peut donner l’impression que la cigarette électronique “ne marche pas”.
+                Le client vape beaucoup, reste frustré, puis reprend une cigarette pour se calmer.
               </p>
             </div>
           </details>
@@ -607,128 +564,189 @@ Le rôle du vendeur est d'expliquer ces points et d'accompagner le client dans s
             <summary>
               <div class="sumLeft">
                 <div class="sumTitle">Dosage trop élevé</div>
-                <div class="sumSub">Inconfort → baisse adhésion</div>
+                <div class="sumSub">Inconfort → irritation → mauvaise expérience</div>
               </div>
               <div class="chev">⌄</div>
             </summary>
+
             <div class="dBody">
-              <p>Un dosage trop élevé peut provoquer :</p>
+              <p>Un dosage trop élevé, surtout avec un matériel trop puissant, peut provoquer :</p>
               <ul>
-                <li>Irritation de la gorge</li>
-                <li>Nausées</li>
-                <li>Maux de tête</li>
+                <li>irritation de la gorge ;</li>
+                <li>hit trop fort ;</li>
+                <li>nausées ;</li>
+                <li>maux de tête ;</li>
+                <li>écœurement ou rejet de la vape.</li>
               </ul>
             </div>
           </details>
 
-          <div class="sectionTitle">4) Adapter le dosage (repères STOOM)</div>
-          <p>Chez STOOM, on utilise souvent ces repères de départ (à ajuster selon les sensations) :</p>
+          <div class="sectionTitle">4) Adapter le dosage : repères STOOM</div>
 
-          <table>
-            <thead>
-              <tr>
-                <th>Profil</th>
-                <th>Dosage conseillé (départ)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>5 à 10 cigarettes / jour</td>
-                <td>3 mg ou 6 mg</td>
-              </tr>
-              <tr>
-                <td>10 à 15 cigarettes / jour</td>
-                <td>6 mg ou 12 mg</td>
-              </tr>
-              <tr>
-                <td>15 à 20 cigarettes / jour</td>
-                <td>10 mg (sels de nicotine)</td>
-              </tr>
-              <tr>
-                <td>20+ cigarettes / jour</td>
-                <td>20 mg (sels de nicotine)</td>
-              </tr>
-            </tbody>
-          </table>
+          <p>
+            Chez STOOM, on utilise ces repères comme base de départ.
+            Ils doivent toujours être ajustés selon les sensations du client, son matériel et son type de tirage.
+          </p>
+
+          <div class="tableWrap">
+            <div class="scrollX">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Profil fumeur</th>
+                    <th>Dosage conseillé au départ</th>
+                    <th>Point de vigilance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>5 à 10 cigarettes / jour</td>
+                    <td>3 mg ou 6 mg</td>
+                    <td>Vérifier les moments de manque : matin, stress, après repas.</td>
+                  </tr>
+                  <tr>
+                    <td>10 à 15 cigarettes / jour</td>
+                    <td>6 mg ou 12 mg</td>
+                    <td>Adapter selon le tirage : MTL, RDL ou DL.</td>
+                  </tr>
+                  <tr>
+                    <td>15 à 20 cigarettes / jour</td>
+                    <td>10 mg en sels de nicotine</td>
+                    <td>Souvent intéressant sur matériel simple, peu puissant et confortable.</td>
+                  </tr>
+                  <tr>
+                    <td>20 cigarettes / jour et plus</td>
+                    <td>20 mg en sels de nicotine</td>
+                    <td>Objectif : éviter le manque fort et sécuriser le démarrage.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
           <div class="warn">
-            <strong>Important :</strong> ces repères se modulent selon le client (cigarette du matin, stress, habitudes, etc.).
+            <strong>Important :</strong> ces repères ne sont pas des règles fixes.
+            On ajuste selon la cigarette du matin, les moments de stress, les tentatives précédentes
+            et le confort ressenti par le client.
           </div>
 
           <div class="sectionTitle">5) Nicotine et puissance du matériel</div>
+
           <div class="callout">
-            <strong>Règle d’or STOOM :</strong> nicotine élevée = matériel peu puissant / tirage serré (MTL).<br/>
-            Nicotine faible = matériel potentiellement plus puissant / tirage plus aérien.
+            <strong>Règle d’or STOOM :</strong><br>
+            Plus le taux de nicotine est élevé, moins le matériel doit être puissant.
+            Plus le taux est faible, plus le matériel peut être puissant.
           </div>
+
           <p>
-            Un matériel trop puissant avec un taux élevé peut rendre la vape désagréable (hit trop fort, irritations…).
-            À l’inverse, un matériel très faible avec une nicotine trop basse peut ne pas satisfaire les besoins du fumeur.
+            Un matériel trop puissant avec un taux élevé peut rendre la vape désagréable :
+            hit trop fort, irritation, surdosage ou rejet de la cigarette électronique.
           </p>
-          <p>Le vendeur associe toujours :</p>
+
+          <p>
+            À l’inverse, un matériel très peu puissant avec une nicotine trop basse peut ne pas satisfaire
+            les besoins du fumeur. Le client risque alors de compenser en vapant beaucoup ou de revenir à la cigarette.
+          </p>
+
+          <p>Le vendeur doit toujours associer correctement :</p>
+
           <ul>
-            <li>le taux de nicotine</li>
-            <li>la puissance / résistance</li>
-            <li>le type de tirage</li>
+            <li>le taux de nicotine ;</li>
+            <li>la puissance du matériel ;</li>
+            <li>la valeur de la résistance ;</li>
+            <li>le type de tirage ;</li>
+            <li>les sensations recherchées par le client.</li>
           </ul>
 
-          <div class="sectionTitle">6) Réduction progressive</div>
+          <div class="sectionTitle">6) Réduction progressive de la nicotine</div>
+
           <p>
-            Beaucoup de clients veulent diminuer la nicotine avec le temps. C’est une bonne approche,
-            mais ça doit être progressif.
+            Beaucoup de clients veulent diminuer rapidement la nicotine.
+            C’est compréhensible, mais la baisse doit rester progressive pour éviter le manque.
           </p>
+
           <div class="warn">
-            Passer trop vite à 0 mg peut créer du manque → risque de rechute.
+            <strong>Attention :</strong> passer trop vite à 0 mg peut créer une frustration importante
+            et augmenter le risque de rechute vers la cigarette.
           </div>
 
           <details>
             <summary>
               <div class="sumLeft">
                 <div class="sumTitle">Stratégies simples de baisse</div>
-                <div class="sumSub">Sans brusquer le client</div>
+                <div class="sumSub">Diminuer sans brusquer le client</div>
               </div>
               <div class="chev">⌄</div>
             </summary>
+
             <div class="dBody">
               <ul>
-                <li>Baisse par paliers (ex : 12 → 6 → 3 → 0)</li>
-                <li>Alternance (ex : 6/3 mg ou 6/0 mg)</li>
-                <li>Rythme personnalisé : objectif = éviter la rechute</li>
+                <li>Baisse par paliers : 12 → 6 → 3 → 0 mg.</li>
+                <li>Alternance : 6/3 mg ou 6/0 mg selon le confort.</li>
+                <li>Rythme personnalisé : on baisse uniquement quand le client est stable.</li>
+                <li>Priorité : éviter la rechute, pas aller le plus vite possible.</li>
               </ul>
             </div>
           </details>
 
-          <div class="sectionTitle">7) Erreurs fréquentes</div>
+          <div class="callout">
+            <strong>Réponse attendue STOOM :</strong><br>
+            Si un client à 6 mg veut passer directement en 0 mg, on déconseille le changement brutal.
+            On propose plutôt une baisse progressive ou une alternance, car l’objectif principal est d’éviter la rechute.
+          </div>
+
+          <div class="sectionTitle">7) Erreurs fréquentes à éviter</div>
+
           <div class="danger">
             <ul>
-              <li>Choisir trop faible “par peur de la nicotine”</li>
-              <li>Matériel puissant + dosage élevé (hit trop fort)</li>
-              <li>Passer trop vite en 0 mg</li>
+              <li>Choisir un taux trop faible par peur de la nicotine.</li>
+              <li>Utiliser un matériel puissant avec un dosage élevé.</li>
+              <li>Passer trop rapidement en 0 mg.</li>
+              <li>Changer de matériel sans réadapter le dosage.</li>
+              <li>Ne pas tenir compte des moments de manque du client.</li>
             </ul>
+          </div>
+
+          <div class="callout">
+            <strong>Principe final :</strong> la bonne nicotine est celle qui permet au client
+            de ne pas retourner au tabac, tout en gardant une vape confortable.
           </div>
 
         </div>
       </section>
 
-      <!-- SIDEBAR -->
       <aside class="panel">
         <div class="panelHead">
-          <h2>Trame vendeur (ultra simple)</h2>
+          <h2>Trame vendeur simple</h2>
         </div>
+
         <div class="panelBody">
+
           <p><strong>Quand un client veut baisser vite :</strong></p>
+
           <div class="callout">
-            “La nicotine n’est pas l’ennemi : elle sert à éviter le manque. Le but c’est de ne pas rechuter.
-            On baisse progressivement, à votre rythme.”
+            “La nicotine n’est pas l’ennemi : elle sert à éviter le manque.
+            Le but, c’est surtout de ne pas rechuter vers la cigarette.
+            On va baisser progressivement, à votre rythme.”
           </div>
 
           <div class="sectionTitle">Checklist conseil nicotine</div>
+
           <ul class="check">
-            <li>cigarettes/j + moments clés (matin, stress)</li>
-            <li>dosage de départ cohérent</li>
-            <li>matériel adapté (nicotine élevée = faible puissance)</li>
-            <li>prévenir : trop bas = risque rechute</li>
-            <li>proposer baisse progressive quand le client est stable</li>
+            <li>Nombre de cigarettes par jour.</li>
+            <li>Type de cigarettes : industrielles, roulées, fortes ou légères.</li>
+            <li>Moments clés : matin, stress, après repas, conduite.</li>
+            <li>Dosage de départ cohérent avec le profil.</li>
+            <li>Matériel adapté : nicotine élevée = faible puissance.</li>
+            <li>Prévenir que trop bas peut favoriser la rechute.</li>
+            <li>Proposer une baisse progressive quand le client est stable.</li>
           </ul>
+
+          <div class="warn" style="margin-top:12px;">
+            <strong>Rappel STOOM :</strong><br>
+            Le dosage ne se choisit pas uniquement avec le nombre de cigarettes.
+            On tient aussi compte du besoin réel, des habitudes et du confort du client.
+          </div>
 
           <a class="btn" href="liquides.html" style="width:100%; justify-content:center; margin-top:12px;">
             Module suivant : E-liquides →
