@@ -1,0 +1,106 @@
+body{
+margin:0;
+font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+background:#0a1222;
+color:#e9efff;
+}
+
+/* CONTENEUR PRINCIPAL */
+/* conteneur principal */
+
+.wrap{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+/* GRILLE DES MODULES */
+/* grille */
+
+.modules-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:18px;
+}
+
+/* CARTE MODULE */
+/* cartes */
+
+.module-card{
+background:#111b33;
+border-radius:14px;
+padding:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.35);
+transition:transform .2s, box-shadow .2s;
+}
+
+.module-card:hover{
+transform:translateY(-3px);
+box-shadow:0 14px 30px rgba(0,0,0,0.45);
+padding:18px;
+box-shadow:0 8px 20px rgba(0,0,0,0.35);
+width:100%;
+box-sizing:border-box;
+}
+
+/* TITRE */
+/* titre */
+
+.module-card h3{
+margin-top:0;
+margin-bottom:10px;
+font-size:18px;
+color:#ffffff;
+color:white;
+}
+
+/* TEXTE */
+/* texte */
+
+.module-card p{
+font-size:14px;
+line-height:1.6;
+color:#cdd7ff;
+}
+
+/* TABLETTE */
+
+@media (max-width:1000px){
+
+.modules-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+/* TELEPHONE */
+/* mobile */
+
+@media (max-width:600px){
+
+.wrap{
+padding:12px;
+}
+
+.modules-grid{
+grid-template-columns:1fr;
+gap:16px;
+}
+
+.module-card{
+padding:18px;
+}
+
+.module-card h3{
+font-size:17px;
+padding:16px;
+}
+
+.module-card p{
+font-size:15px;
+line-height:1.7;
+}
+
+}
