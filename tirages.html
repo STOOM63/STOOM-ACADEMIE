@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Académie STOOM — Types de tirage</title>
+
+  <!-- Si ton ../style.css écrase le design, commente la ligne ci-dessous -->
+  <!-- <link rel="stylesheet" href="../style.css"> -->
+
+  <style>
+    :root{
+      --bg0:#070c18;
+      --bg1:#0a1222;
+      --line:rgba(255,255,255,.10);
+      --text:#eaf0ff;
+      --muted:#b7c3ff;
+      --muted2:#cdd7ff;
+      --accent:#4da3ff;
+      --accent2:#2bd9a8;
+      --warn:#ffcc66;
+      --bad:#ff6b6b;
+      --shadow:0 12px 30px rgba(0,0,0,.35);
+      --shadow2:0 18px 55px rgba(0,0,0,.45);
+      --r:18px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(900px 450px at 12% 10%, rgba(77,163,255,.22), transparent 60%),
+        radial-gradient(850px 420px at 88% 18%, rgba(43,217,168,.16), transparent 60%),
+        radial-gradient(900px 520px at 50% 120%, rgba(255,255,255,.06), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:1100px; margin:0 auto; padding:22px; }
+
+    /* Topbar */
+    .topbar{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .crumbs{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      color:rgba(183,195,255,.85);
+      font-size:13px;
+    }
+    .crumbs a{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      padding:8px 10px;
+      border-radius:12px;
+    }
+    .crumbs a:hover{ background:rgba(255,255,255,.06); }
+
+    .btn{
+      border:1px solid rgba(77,163,255,.35);
+      background:rgba(77,163,255,.10);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:750;
+      font-size:13px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      cursor:pointer;
+      transition:.18s;
+      user-select:none;
+    }
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(77,163,255,.16);
+      box-shadow:0 14px 30px rgba(0,0,0,.25);
+    }
+    .btn.secondary{
+      border-color:var(--line);
+      background:rgba(255,255,255,.04);
+      font-weight:650;
+    }
+    .btn.secondary:hover{ background:rgba(255,255,255,.06); }
+
+    /* Hero */
+    .hero{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border-radius:calc(var(--r) + 6px);
+      padding:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(600px 240px at 15% 0%, rgba(77,163,255,.25), transparent 60%),
+        radial-gradient(520px 220px at 90% 30%, rgba(43,217,168,.18), transparent 60%);
+      pointer-events:none;
+      opacity:.8;
+    }
+    .hero > *{ position:relative; }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:var(--muted2);
+      font-size:13px;
+      margin-bottom:10px;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 4px rgba(77,163,255,.16);
+    }
+    h1{ margin:0; font-size:24px; letter-spacing:.2px; line-height:1.15; }
+    .sub{ margin:10px 0 0 0; color:var(--muted); font-size:14px; line-height:1.6; max-width:85ch; }
+
+    .pillRow{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .pill{
+      font-size:12px;
+      color:rgba(234,240,255,.92);
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.12);
+      padding:6px 10px;
+      border-radius:999px;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+    }
+    .pDot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--accent2);
+      box-shadow:0 0 0 4px rgba(43,217,168,.12);
+    }
+
+    /* Layout */
+    .layout{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:14px;
+      align-items:start;
+    }
+    .panel{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .panelHead{
+      padding:14px 14px 10px 14px;
+      border-left:4px solid var(--accent);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .panelHead h2{ margin:0; font-size:15px; letter-spacing:.2px; }
+    .panelBody{
+      padding:0 14px 14px 14px;
+      color:var(--muted2);
+      font-size:14px;
+      line-height:1.75;
+    }
+
+    /* Mobile readability */
+    .panelBody p{ margin:10px 0; }
+    .panelBody ul{ margin:8px 0 12px 18px; padding:0; }
+    .panelBody li{ margin:7px 0; }
+    .sectionTitle{
+      margin:14px 0 6px 0;
+      color:#fff;
+      font-weight:850;
+      font-size:13px;
+      letter-spacing:.2px;
+    }
+
+    .callout{
+      border:1px solid rgba(43,217,168,.25);
+      background:rgba(43,217,168,.08);
+      border-radius:14px;
+      padding:12px;
+      margin:12px 0;
+      color:rgba(234,240,255,.95);
+    }
+    .warn{
+      border:1px solid rgba(255,204,102,.25);
+      background:rgba(255,204,102,.08);
+      border-radius:14px;
+      padding:12px;
+      margin:12px 0;
+      color:rgba(234,240,255,.95);
+    }
+    .danger{
+      border:1px solid rgba(255,107,107,.25);
+      background:rgba(255,107,107,.08);
+      border-radius:14px;
+      padding:12px;
+      margin:12px 0;
+      color:rgba(234,240,255,.95);
+    }
+
+    details{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.10);
+      border-radius:14px;
+      margin:10px 0;
+      overflow:hidden;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      padding:12px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .sumLeft{ min-width:0; }
+    .sumTitle{ font-weight:850; font-size:13px; color:#fff; line-height:1.25; }
+    .sumSub{ font-size:12px; color:rgba(183,195,255,.85); margin-top:4px; line-height:1.35; }
+    .chev{
+      width:32px;height:32px;border-radius:12px;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      flex:0 0 auto;
+    }
+    details[open] .chev{
+      background:rgba(77,163,255,.12);
+      border-color:rgba(77,163,255,.35);
+    }
+    .dBody{ padding:0 12px 12px 12px; }
+
+    /* Table */
+    .tableWrap{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      overflow:hidden;
+      background:rgba(0,0,0,.10);
+      margin:12px 0;
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:720px;
+    }
+    th, td{
+      padding:12px 12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      text-align:left;
+      vertical-align:top;
+      font-size:13px;
+      color:rgba(234,240,255,.92);
+    }
+    th{
+      color:#fff;
+      background:rgba(255,255,255,.05);
+      font-weight:900;
+    }
+    tr:last-child td{ border-bottom:none; }
+    .scrollX{
+      overflow:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+
+    .check{
+      list-style:none;
+      margin:10px 0 0 0;
+      padding:0;
+    }
+    .check li{
+      margin:10px 0;
+      padding-left:26px;
+      position:relative;
+    }
+    .check li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      color:var(--accent2);
+      font-weight:900;
+    }
+
+    footer{
+      margin:18px 0 6px 0;
+      text-align:center;
+      color:rgba(183,195,255,.75);
+      font-size:12px;
+      line-height:1.5;
+    }
+
+    @media (max-width:900px){
+      .layout{ grid-template-columns: 1fr; }
+    }
+    @media (max-width:600px){
+      .wrap{ padding:12px; }
+      h1{ font-size:20px; }
+      .sub{ font-size:13px; }
+      .btn{ width:100%; justify-content:center; }
+      .topbar{ gap:10px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="topbar">
+      <div class="crumbs">
+        <a href="../index.html">← Accueil</a>
+        <span>•</span>
+        <span>Module</span>
+      </div>
+      <a class="btn secondary" href="quiz.html">Aller au quiz</a>
+    </div>
+
+    <header class="hero">
+      <div class="kicker"><span class="dot"></span>Académie STOOM • Module</div>
+      <h1>Les types de tirage</h1>
+      <p class="sub">
+        Le tirage détermine la sensation (proche cigarette ou très aérien), la puissance, la vapeur,
+        et surtout le bon dosage de nicotine. Ici : MTL • RDL • DL.
+      </p>
+      <div class="pillRow">
+        <span class="pill"><span class="pDot"></span>MTL</span>
+        <span class="pill">RDL</span>
+        <span class="pill">DL</span>
+      </div>
+    </header>
+
+    <main class="layout">
+
+      <!-- CONTENU -->
+      <section class="panel">
+        <div class="panelHead">
+          <h2>Le contenu du module</h2>
+        </div>
+        <div class="panelBody">
+
+          <div class="sectionTitle">1) Comprendre le tirage</div>
+          <p>
+            Le tirage correspond à la manière dont la vapeur est inhalée. Il influence fortement l’expérience :
+            quantité de vapeur, sensation de hit, matériel conseillé et taux de nicotine adapté.
+          </p>
+
+          <div class="callout">
+            <strong>Règle simple :</strong> plus c’est aérien (DL), plus on inhale de vapeur → <strong>nicotine généralement plus faible</strong>.
+          </div>
+
+          <div class="sectionTitle">2) Comparatif rapide</div>
+          <div class="tableWrap">
+            <div class="scrollX">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Sensation</th>
+                    <th>Vapeur</th>
+                    <th>Puissance</th>
+                    <th>Nicotine (tendance)</th>
+                    <th>Profil</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>MTL</strong></td>
+                    <td>Très proche cigarette (serré)</td>
+                    <td>Modérée</td>
+                    <td>Faible</td>
+                    <td>Plus élevée (souvent)</td>
+                    <td>Débutant / sevrage</td>
+                  </tr>
+                  <tr>
+                    <td><strong>RDL</strong></td>
+                    <td>Direct poumon mais “restreint”</td>
+                    <td>Modérée à +</td>
+                    <td>Intermédiaire</td>
+                    <td>Moyenne</td>
+                    <td>Compromis vapeur/confort</td>
+                  </tr>
+                  <tr>
+                    <td><strong>DL</strong></td>
+                    <td>Très aérien (direct poumon)</td>
+                    <td>Importante</td>
+                    <td>Élevée</td>
+                    <td>Plus faible</td>
+                    <td>Vapoteur expérimenté</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="sectionTitle">3) Détails par type</div>
+
+          <details open>
+            <summary>
+              <div class="sumLeft">
+                <div class="sumTitle">MTL — Mouth To Lung</div>
+                <div class="sumSub">Serré • simple • proche cigarette</div>
+              </div>
+              <div class="chev">⌄</div>
+            </summary>
+            <div class="dBody">
+              <p>
+                Inhalation en deux temps : bouche → poumons. C’est le tirage qui ressemble le plus à la cigarette.
+              </p>
+              <ul>
+                <li>tirage serré</li>
+                <li>puissance faible</li>
+                <li>consommation de liquide faible</li>
+                <li>nicotine souvent plus élevée</li>
+              </ul>
+              <div class="warn">
+                <strong>Idéal pour :</strong> débutants et fumeurs qui veulent “la sensation cigarette”.
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <div class="sumLeft">
+                <div class="sumTitle">RDL — Restricted Direct Lung</div>
+                <div class="sumSub">Semi-aérien • bon rendu • compromis</div>
+              </div>
+              <div class="chev">⌄</div>
+            </summary>
+            <div class="dBody">
+              <p>
+                Inhalation direct poumon, mais avec une restriction (pas “souffler dans un tuyau d’arrosage”).
+                Bon compromis entre vapeur et confort.
+              </p>
+              <ul>
+                <li>tirage semi-aérien</li>
+                <li>puissance intermédiaire</li>
+                <li>vapeur modérée</li>
+                <li>très bon rendu aromatique (souvent)</li>
+              </ul>
+              <div class="callout">
+                <strong>Idéal pour :</strong> clients qui veulent “un peu plus” sans passer en DL.
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <div class="sumLeft">
+                <div class="sumTitle">DL — Direct Lung</div>
+                <div class="sumSub">Très aérien • grosse vapeur • dosage plus bas</div>
+              </div>
+              <div class="chev">⌄</div>
+            </summary>
+            <div class="dBody">
+              <p>
+                Inhalation direct poumon. Vape très aérienne, grosse production de vapeur.
+                Matériel souvent plus puissant, résistances plus basses.
+              </p>
+              <ul>
+                <li>tirage très aérien</li>
+                <li>puissance élevée</li>
+                <li>consommation liquide plus forte</li>
+                <li>nicotine plus faible (car plus de vapeur inhalée)</li>
+              </ul>
+              <div class="warn">
+                <strong>Attention :</strong> pas l’option “par défaut” pour un fumeur débutant.
+              </div>
+            </div>
+          </details>
+
+          <div class="sectionTitle">4) Choisir le bon tirage en 30 secondes</div>
+          <ul class="check">
+            <li>Débutant / veut sensation cigarette → <strong>MTL</strong></li>
+            <li>Veut un peu plus de vapeur sans perdre le confort → <strong>RDL</strong></li>
+            <li>Vapote déjà / veut beaucoup de vapeur → <strong>DL</strong></li>
+          </ul>
+
+          <div class="callout">
+            <strong>Truc vendeur :</strong> fais “mimer” au client l’inhalation cigarette (serré) vs “respirer fort” (aérien).
+            <strong>Astuce vendeur :</strong> fais “mimer” au client l’inhalation cigarette (serré) vs “respirer fort” (aérien).
+            En 10 secondes tu sais.
+          </div>
+
+          <div class="sectionTitle">5) Erreurs fréquentes</div>
+          <div class="danger">
+            <ul>
+              <li>Nicotine trop élevée avec un matériel très puissant (hit trop fort, irritation)</li>
+              <li>Choisir trop aérien alors que le client veut “comme la cigarette”</li>
+              <li>Fermer complètement l’airflow sur un matériel prévu pour être aérien</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SIDEBAR -->
+      <aside class="panel">
+        <div class="panelHead">
+          <h2>Règles d’or STOOM</h2>
+        </div>
+        <div class="panelBody">
+          <div class="callout">
+            <strong>Nicotine ↔ Tirage :</strong><br/>
+            Tirage serré (MTL) = nicotine possible plus élevée.<br/>
+            Tirage aérien (DL) = nicotine généralement plus faible.
+          </div>
+
+          <div class="sectionTitle">Mini-checklist conseil</div>
+          <ul class="check">
+            <li>objectif du client (arrêt / réduction)</li>
+            <li>sensation recherchée (cigarette vs vapeur)</li>
+            <li>cohérence matériel + nicotine</li>
+            <li>réglage airflow expliqué</li>
+          </ul>
+
+          <a class="btn" href="nicotine.html" style="width:100%; justify-content:center; margin-top:12px;">
+            Module suivant : Nicotine →
+          </a>
+        </div>
+      </aside>
+
+    </main>
+
+    <footer>
+      Académie STOOM — Module Tirages • Support interne
+    </footer>
+
+  </div>
+</body>
+</html>
