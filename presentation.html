@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Présentation STOOM</title>
+
+<link rel="stylesheet" href="../style.css">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Académie STOOM — Présentation STOOM</title>
+
+  <!-- Si ton ../style.css écrase le design, commente la ligne ci-dessous -->
+  <!-- <link rel="stylesheet" href="../style.css"> -->
+
+  <style>
+    :root{
+      --bg0:#070c18;
+      --bg1:#0a1222;
+      --line:rgba(255,255,255,.10);
+      --text:#eaf0ff;
+      --muted:#b7c3ff;
+      --muted2:#cdd7ff;
+      --accent:#4da3ff;
+      --accent2:#2bd9a8;
+      --warn:#ffcc66;
+      --shadow:0 12px 30px rgba(0,0,0,.35);
+      --shadow2:0 18px 55px rgba(0,0,0,.45);
+      --r:18px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(900px 450px at 12% 10%, rgba(77,163,255,.22), transparent 60%),
+        radial-gradient(850px 420px at 88% 18%, rgba(43,217,168,.16), transparent 60%),
+        radial-gradient(900px 520px at 50% 120%, rgba(255,255,255,.06), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:1100px; margin:0 auto; padding:22px; }
+
+    /* Topbar */
+    .topbar{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .crumbs{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      color:rgba(183,195,255,.85);
+      font-size:13px;
+    }
+    .crumbs a{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      padding:8px 10px;
+      border-radius:12px;
+    }
+    .crumbs a:hover{ background:rgba(255,255,255,.06); }
+
+    .btn{
+      border:1px solid rgba(77,163,255,.35);
+      background:rgba(77,163,255,.10);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:750;
+      font-size:13px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      cursor:pointer;
+      transition:.18s;
+      user-select:none;
+    }
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(77,163,255,.16);
+      box-shadow:0 14px 30px rgba(0,0,0,.25);
+    }
+    .btn.secondary{
+      border-color:var(--line);
+      background:rgba(255,255,255,.04);
+      font-weight:650;
+    }
+    .btn.secondary:hover{ background:rgba(255,255,255,.06); }
+
+    /* Hero */
+    .hero{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border-radius:calc(var(--r) + 6px);
+      padding:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(600px 240px at 15% 0%, rgba(77,163,255,.25), transparent 60%),
+        radial-gradient(520px 220px at 90% 30%, rgba(43,217,168,.18), transparent 60%);
+      pointer-events:none;
+      opacity:.8;
+    }
+    .hero > *{ position:relative; }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:var(--muted2);
+      font-size:13px;
+      margin-bottom:10px;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 4px rgba(77,163,255,.16);
+    }
+    h1{ margin:0; font-size:24px; letter-spacing:.2px; line-height:1.15; }
+    .sub{ margin:10px 0 0 0; color:var(--muted); font-size:14px; line-height:1.6; max-width:75ch; }
+
+    .pillRow{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .pill{
+      font-size:12px;
+      color:rgba(234,240,255,.92);
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.12);
+      padding:6px 10px;
+      border-radius:999px;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+    }
+    .pDot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--accent2);
+      box-shadow:0 0 0 4px rgba(43,217,168,.12);
+    }
+
+    /* Layout */
+    .layout{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:14px;
+      align-items:start;
+    }
+    .panel{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .panelHead{
+      padding:14px 14px 10px 14px;
+      border-left:4px solid var(--accent);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .panelHead h2{ margin:0; font-size:15px; letter-spacing:.2px; }
+    .panelBody{
+      padding:0 14px 14px 14px;
+      color:var(--muted2);
+      font-size:14px;
+      line-height:1.75;
+    }
+
+    /* Mobile readability */
+    .panelBody p{ margin:10px 0; }
+    .panelBody ul{ margin:8px 0 12px 18px; padding:0; }
+    .panelBody li{ margin:7px 0; }
+    .sectionTitle{
+      margin:14px 0 6px 0;
+      color:#fff;
+      font-weight:850;
+      font-size:13px;
+      letter-spacing:.2px;
+    }
+
+    .callout{
+      border:1px solid rgba(43,217,168,.25);
+      background:rgba(43,217,168,.08);
+      border-radius:14px;
+      padding:12px;
+      margin:12px 0;
+      color:rgba(234,240,255,.95);
+    }
+    .warn{
+      border:1px solid rgba(255,204,102,.25);
+      background:rgba(255,204,102,.08);
+      border-radius:14px;
+      padding:12px;
+      margin:12px 0;
+      color:rgba(234,240,255,.95);
+    }
+
+    .check{
+      list-style:none;
+      margin:10px 0 0 0;
+      padding:0;
+    }
+    .check li{
+      margin:10px 0;
+      padding-left:26px;
+      position:relative;
+    }
+    .check li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      color:var(--accent2);
+      font-weight:900;
+    }
+
+    footer{
+      margin:18px 0 6px 0;
+      text-align:center;
+      color:rgba(183,195,255,.75);
+      font-size:12px;
+      line-height:1.5;
+    }
+
+    @media (max-width:900px){
+      .layout{ grid-template-columns: 1fr; }
+    }
+    @media (max-width:600px){
+      .wrap{ padding:12px; }
+      h1{ font-size:20px; }
+      .sub{ font-size:13px; }
+      .btn{ width:100%; justify-content:center; }
+      .topbar{ gap:10px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<section class="modules">
+
+<div class="card">
+
+<h2>La mission de STOOM</h2>
+
+<p>
+
+STOOM est une boutique spécialisée dans la cigarette électronique dont l'objectif est d'accompagner les fumeurs dans leur transition vers une alternative au tabac.
+
+La cigarette électronique est aujourd'hui largement utilisée comme outil de réduction des risques liés au tabagisme.
+
+Cependant, son efficacité dépend fortement de la qualité du conseil apporté au client.
+
+Chez STOOM, la priorité n'est pas simplement de vendre un produit mais de proposer une solution adaptée à chaque situation.
+
+Chaque fumeur possède une dépendance différente, des habitudes différentes et des attentes différentes.
+
+Le rôle du vendeur est donc d'analyser ces éléments afin de proposer le matériel et le liquide les plus adaptés.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Le rôle du vendeur</h2>
+
+<p>
+
+Le vendeur joue un rôle essentiel dans la réussite de la transition du client vers la cigarette électronique.
+
+Un mauvais conseil peut conduire à une mauvaise expérience et pousser le client à retourner vers le tabac.
+
+Un bon conseil peut au contraire permettre au client de réduire fortement ou d'arrêter totalement sa consommation de cigarettes.
+
+Le vendeur doit donc adopter une posture de conseiller et non simplement de commerçant.
+
+Cela implique :
+
+écouter le client
+
+comprendre sa situation
+
+expliquer les solutions possibles
+
+accompagner le client dans ses premières utilisations
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Les valeurs STOOM</h2>
+
+<p>
+
+Le fonctionnement du magasin repose sur plusieurs principes fondamentaux.
+
+Le conseil avant la vente.
+
+Le vendeur doit toujours privilégier la solution la plus adaptée au client.
+
+La pédagogie.
+
+La cigarette électronique reste un produit technique pour beaucoup de personnes. Il est important d'expliquer simplement le fonctionnement du matériel.
+
+La transparence.
+
+Les informations données aux clients doivent être honnêtes et claires.
+
+Le respect.
+
+Chaque client doit être accueilli avec bienveillance et sans jugement.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Pourquoi le conseil est essentiel</h2>
+
+<p>
+
+La cigarette électronique ne fonctionne pas de la même manière pour tous les utilisateurs.
+
+Plusieurs paramètres influencent l'expérience de vape :
+
+le type de matériel
+
+le taux de nicotine
+
+le type de tirage
+
+la consommation de cigarettes
+
+les préférences de saveurs
+
+Un mauvais réglage ou un mauvais conseil peut entraîner :
+
+un manque de nicotine
+
+une irritation
+
+une mauvaise satisfaction
+
+un retour au tabac
+
+C'est pour cette raison que l'accompagnement est au cœur du métier de vendeur en boutique spécialisée.
+
+</p>
+
+</div>
+
+</section>
+
+  <div class="wrap">
+
+    <div class="topbar">
+      <div class="crumbs">
+        <a href="../index.html">← Accueil</a>
+        <span>•</span>
+        <span>Module</span>
+      </div>
+      <a class="btn secondary" href="quiz.html">Aller au quiz</a>
+    </div>
+
+    <header class="hero">
+      <div class="kicker"><span class="dot"></span>Académie STOOM • Module</div>
+      <h1>Présentation STOOM</h1>
+      <p class="sub">
+        La mission, le rôle du vendeur et les valeurs : la base de la posture STOOM.
+        Ici, on ne “vend pas un produit”, on accompagne une transition.
+      </p>
+      <div class="pillRow">
+        <span class="pill"><span class="pDot"></span>Posture</span>
+        <span class="pill">Conseil</span>
+        <span class="pill">Valeurs</span>
+      </div>
+    </header>
+
+    <main class="layout">
+
+      <!-- CONTENU -->
+      <section class="panel">
+        <div class="panelHead">
+          <h2>Le contenu du module</h2>
+        </div>
+        <div class="panelBody">
+
+          <div class="sectionTitle">1) La mission de STOOM</div>
+          <p>
+            STOOM est une boutique spécialisée dans la cigarette électronique. Notre objectif :
+            accompagner les fumeurs vers une alternative au tabac.
+          </p>
+          <p>
+            La vape peut être un outil de réduction des risques liés au tabagisme, mais son efficacité dépend
+            fortement de la qualité du conseil.
+          </p>
+          <div class="callout">
+            <strong>Chez STOOM :</strong> priorité au conseil. On cherche une solution adaptée à chaque situation,
+            pas “un produit à vendre”.
+          </div>
+          <p>
+            Chaque fumeur a des habitudes et des attentes différentes. Le rôle du vendeur est d’analyser ces éléments
+            pour proposer le matériel et le liquide adaptés.
+          </p>
+
+          <div class="sectionTitle">2) Le rôle du vendeur</div>
+          <p>
+            Le vendeur joue un rôle essentiel dans la réussite de la transition. Un mauvais conseil peut provoquer
+            une mauvaise expérience et pousser le client à retourner vers le tabac.
+          </p>
+          <p>
+            À l’inverse, un bon conseil peut permettre au client de réduire fortement, voire d’arrêter totalement.
+          </p>
+          <div class="warn">
+            <strong>Posture :</strong> un conseiller (pas un simple commerçant).
+          </div>
+          <ul>
+            <li>Écouter le client</li>
+            <li>Comprendre sa situation</li>
+            <li>Expliquer les options possibles</li>
+            <li>Accompagner les premières utilisations</li>
+          </ul>
+
+          <div class="sectionTitle">3) Les valeurs STOOM</div>
+          <div class="callout">
+            <strong>4 piliers :</strong> conseil • pédagogie • transparence • respect
+          </div>
+          <ul>
+            <li><strong>Conseil avant la vente</strong> : proposer la solution la plus adaptée</li>
+            <li><strong>Pédagogie</strong> : expliquer simplement un produit technique</li>
+            <li><strong>Transparence</strong> : infos honnêtes et claires</li>
+            <li><strong>Respect</strong> : accueil bienveillant, sans jugement</li>
+          </ul>
+
+          <div class="sectionTitle">4) Pourquoi le conseil est essentiel</div>
+          <p>La vape dépend de plusieurs paramètres :</p>
+          <ul>
+            <li>le type de matériel</li>
+            <li>le taux de nicotine</li>
+            <li>le type de tirage</li>
+            <li>la consommation de cigarettes</li>
+            <li>les préférences de saveurs</li>
+          </ul>
+          <p>Un mauvais réglage ou un mauvais conseil peut entraîner :</p>
+          <ul>
+            <li>un manque de nicotine</li>
+            <li>une irritation</li>
+            <li>une mauvaise satisfaction</li>
+            <li>un retour au tabac</li>
+          </ul>
+          <div class="callout">
+            <strong>Conclusion :</strong> l’accompagnement est au cœur du métier de vendeur en boutique spécialisée.
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SIDEBAR -->
+      <aside class="panel">
+        <div class="panelHead">
+          <h2>Checklist posture STOOM</h2>
+        </div>
+        <div class="panelBody">
+          <p><strong>Mon objectif à chaque vente :</strong></p>
+          <ul class="check">
+            <li>mettre le client à l’aise (zéro jugement)</li>
+            <li>poser des questions avant de proposer</li>
+            <li>expliquer simplement (pédagogie)</li>
+            <li>assurer la cohérence matériel + nicotine + liquide</li>
+            <li>prévenir les erreurs et inviter à repasser</li>
+          </ul>
+
+          <div class="warn" style="margin-top:12px;">
+            <strong>Phrase STOOM :</strong> “Je vous conseille une solution adaptée à votre profil, pour éviter la rechute.”
+          </div>
+
+          <a class="btn" href="vape.html" style="width:100%; justify-content:center; margin-top:12px;">
+            Module suivant : Comprendre la vape →
+          </a>
+        </div>
+      </aside>
+
+    </main>
+
+    <footer>
+      Académie STOOM — Module Présentation • Support interne
+    </footer>
+
+  </div>
+</body>
+</html>
