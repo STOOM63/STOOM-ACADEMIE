@@ -626,190 +626,171 @@
   </div>
 
   <script>
-    const key = (i) => (i + 3) * 7;
-    const unkey = (k) => (k / 7) - 3;
+    // Quiz certification STOOM
+    // Correction : les réponses sont maintenant mélangées à chaque chargement.
+    // La bonne réponse n'est donc plus toujours en première position.
 
     const Q = [
-      [
-        "Un client fume 20 cigarettes/jour, veut une sensation proche cigarette et ne veut pas de gros nuages. Tu priorises quoi ?",
-        [
-          "MTL + puissance faible + nicotine adaptée",
-          "DL + puissance élevée + nicotine élevée",
-          "RDL + puissance élevée + nicotine faible"
-        ],
-        key(0)
-      ],
-      [
-        "Client : “Je prends 0 mg parce que la nicotine, c’est dangereux.” Ta réponse la plus juste chez STOOM ?",
-        [
-          "Expliquer que le risque majeur vient de la combustion, et que la nicotine sert à éviter le manque dans un sevrage progressif",
-          "Accepter 0 mg et compenser en augmentant fortement la puissance",
-          "Proposer 0 mg mais uniquement en DL pour remplacer la nicotine"
-        ],
-        key(0)
-      ],
-      [
-        "Un débutant tousse avec un liquide en sels de nicotine. Quelle cause est la plus probable ?",
-        [
-          "Dosage trop haut, fréquence trop élevée ou matériel pas adapté au tirage",
-          "La VG est trop élevée, donc la nicotine pique davantage",
-          "La résistance est trop vieille, donc la nicotine devient irritante"
-        ],
-        key(0)
-      ],
-      [
-        "Goût de brûlé dès la première utilisation sur résistance neuve. Le diagnostic le plus cohérent ?",
-        [
-          "Résistance pas amorcée, coton sec ou puissance trop haute au départ",
-          "Airflow trop ouvert, donc ça brûle plus vite",
-          "Liquide trop frais ou mentholé"
-        ],
-        key(0)
-      ],
-      [
-        "Un client revient : “Ça fuit dans la poche.” Quelle première vérification terrain est la plus pertinente ?",
-        [
-          "Montage de la résistance, joints, fermeture, méthode de remplissage, stockage et condensation",
-          "Vérifier uniquement si la batterie délivre bien la bonne puissance",
-          "Augmenter systématiquement la glycérine végétale pour réduire les fuites"
-        ],
-        key(0)
-      ],
-      [
-        "Un client veut plus de vapeur mais garde 12 mg en base nicotine. Quelle approche STOOM est la plus cohérente ?",
-        [
-          "Expliquer que plus de vapeur implique généralement un dosage plus bas et un matériel plus puissant, avec une transition progressive",
-          "Augmenter la puissance sans toucher au dosage",
-          "Passer en sels de nicotine 20 mg pour avoir une sensation plus douce en gorge"
-        ],
-        key(0)
-      ],
-      [
-        "Quelle phrase décrit le mieux la différence entre MTL et DL ?",
-        [
-          "MTL = tirage serré proche cigarette ; DL = tirage aérien, direct poumon, plus de vapeur",
-          "MTL = plus de vapeur ; DL = plus de hit",
-          "MTL = uniquement sels de nicotine ; DL = uniquement base classique"
-        ],
-        key(0)
-      ],
-      [
-        "Tu dois choisir un liquide pour un pod MTL à petite résistance. Quel PG/VG est souvent le plus sécurisant ?",
-        [
-          "Un liquide plutôt fluide, souvent plus riche en PG, pour bien alimenter le coton",
-          "Un liquide très riche en VG pour éviter les fuites",
-          "Un liquide 100% VG pour protéger la résistance"
-        ],
-        key(0)
-      ],
-      [
-        "Client : “Je vape mais je fume encore 5 cigarettes.” La réaction STOOM la plus intelligente ?",
-        [
-          "Dédramatiser, analyser les moments où il fume, puis ajuster nicotine, tirage ou matériel",
-          "Lui dire que vaper et fumer en même temps est forcément inutile",
-          "Lui expliquer simplement que cette période passera toute seule"
-        ],
-        key(0)
-      ],
-      [
-        "Quel combo est le plus risqué pour un débutant ?",
-        [
-          "Matériel DL puissant + nicotine élevée",
-          "Pod MTL + nicotine adaptée",
-          "RDL modéré + nicotine modérée"
-        ],
-        key(0)
-      ],
-      [
-        "Le client dit : “Ça ne tire plus.” Quelle cause est très fréquente ?",
-        [
-          "Résistance encrassée, coton saturé, airflow obstrué ou matériel mal entretenu",
-          "Le liquide est devenu marron, donc il n’est plus consommable",
-          "Le PG a évaporé, donc la résistance ne fonctionne plus"
-        ],
-        key(0)
-      ],
-      [
-        "Quel discours est le plus professionnel en vente STOOM ?",
-        [
-          "On propose une solution cohérente et on explique pourquoi elle est adaptée",
-          "On vend d’abord le matériel le plus cher, puis on justifie le choix",
-          "On évite de poser des questions pour ne pas mettre le client mal à l’aise"
-        ],
-        key(0)
-      ],
-      [
-        "Un client veut passer de 6 mg à 0 mg d’un coup. Réponse STOOM attendue ?",
-        [
-          "Conseiller une baisse progressive, par exemple alternance 6/3 mg ou 6/0 mg, pour éviter la rechute",
-          "Valider immédiatement le 0 mg, car c’est toujours mieux",
-          "Passer en DL puissant pour compenser le manque"
-        ],
-        key(0)
-      ],
-      [
-        "Pour limiter les retours SAV, le plus important à montrer avant que le client parte est…",
-        [
-          "Amorçage, remplissage et réglages de base, comme watts et airflow si applicable",
-          "Seulement la recharge USB",
-          "Uniquement comment imbiber ses résistances"
-        ],
-        key(0)
-      ],
-      [
-        "Un liquide riche en VG sur un petit pod MTL peut surtout provoquer…",
-        [
-          "Une alimentation difficile du coton, donc dry hit ou résistance qui grille vite",
-          "Plus de hit et trop de nicotine",
-          "Une batterie qui se décharge deux fois plus vite"
-        ],
-        key(0)
-      ],
-      [
-        "Le client veut une vape très serrée mais choisit un clearomiseur DL. Ta meilleure réponse ?",
-        [
-          "Expliquer l’incohérence et réorienter vers du MTL ou vers un matériel plus adapté",
-          "Fermer l’airflow au maximum, car ça devient forcément du MTL",
-          "Augmenter la nicotine pour que le tirage paraisse plus serré"
-        ],
-        key(0)
-      ],
-      [
-        "Tu proposes des résistances de rechange. Quelle justification est la plus crédible ?",
-        [
-          "Éviter la panne et assurer une expérience stable",
-          "Augmenter l’autonomie de la batterie",
-          "Éviter de les acheter chez un concurrent"
-        ],
-        key(0)
-      ],
-      [
-        "Repère STOOM : 10 flacons de 10 ml correspondent en moyenne à…",
-        [
-          "La consommation d’un fumeur d’environ 20 cigarettes par jour",
-          "La consommation d’un fumeur d’environ 5 cigarettes par jour",
-          "La consommation d’un fumeur d’environ 40 cigarettes par jour"
-        ],
-        key(0)
-      ],
-      [
-        "Quand demander un avis Google ?",
-        [
-          "Quand le client est satisfait et que l’échange est naturel, sans insister",
-          "Dès l’entrée en magasin",
-          "Uniquement si le panier est élevé"
-        ],
-        key(0)
-      ],
-      [
-        "Face à un client qui revient énervé, la première action professionnelle est…",
-        [
-          "Écouter, reformuler et diagnostiquer avant de conclure",
-          "Vérifier immédiatement si le client utilise mal son matériel",
-          "Remplacer directement le produit, sans diagnostic"
-        ],
-        key(0)
-      ]
+      {
+        question: "Un client fume 20 cigarettes/jour, veut une sensation proche cigarette et ne veut pas de gros nuages. Tu priorises quoi ?",
+        answers: [
+          { text: "MTL + puissance faible + nicotine adaptée", correct: true },
+          { text: "DL + puissance élevée + nicotine élevée", correct: false },
+          { text: "RDL + puissance élevée + nicotine faible", correct: false }
+        ]
+      },
+      {
+        question: "Client : “Je prends 0 mg parce que la nicotine, c’est dangereux.” Ta réponse la plus juste chez STOOM ?",
+        answers: [
+          { text: "Accepter 0 mg et compenser en augmentant fortement la puissance", correct: false },
+          { text: "Expliquer que le risque majeur vient de la combustion, et que la nicotine sert à éviter le manque dans un sevrage progressif", correct: true },
+          { text: "Proposer 0 mg mais uniquement en DL pour remplacer la nicotine", correct: false }
+        ]
+      },
+      {
+        question: "Un débutant tousse avec un liquide en sels de nicotine. Quelle cause est la plus probable ?",
+        answers: [
+          { text: "La VG est trop élevée, donc la nicotine pique davantage", correct: false },
+          { text: "Dosage trop haut, fréquence trop élevée ou matériel pas adapté au tirage", correct: true },
+          { text: "La résistance est trop vieille, donc la nicotine devient irritante", correct: false }
+        ]
+      },
+      {
+        question: "Goût de brûlé dès la première utilisation sur résistance neuve. Le diagnostic le plus cohérent ?",
+        answers: [
+          { text: "Airflow trop ouvert, donc ça brûle plus vite", correct: false },
+          { text: "Liquide trop frais ou mentholé", correct: false },
+          { text: "Résistance pas amorcée, coton sec ou puissance trop haute au départ", correct: true }
+        ]
+      },
+      {
+        question: "Un client revient : “Ça fuit dans la poche.” Quelle première vérification terrain est la plus pertinente ?",
+        answers: [
+          { text: "Montage de la résistance, joints, fermeture, méthode de remplissage, stockage et condensation", correct: true },
+          { text: "Vérifier uniquement si la batterie délivre bien la bonne puissance", correct: false },
+          { text: "Augmenter systématiquement la glycérine végétale pour réduire les fuites", correct: false }
+        ]
+      },
+      {
+        question: "Un client veut plus de vapeur mais garde 12 mg en base nicotine. Quelle approche STOOM est la plus cohérente ?",
+        answers: [
+          { text: "Passer en sels de nicotine 20 mg pour avoir une sensation plus douce en gorge", correct: false },
+          { text: "Expliquer que plus de vapeur implique généralement un dosage plus bas et un matériel plus puissant, avec une transition progressive", correct: true },
+          { text: "Augmenter la puissance sans toucher au dosage", correct: false }
+        ]
+      },
+      {
+        question: "Quelle phrase décrit le mieux la différence entre MTL et DL ?",
+        answers: [
+          { text: "MTL = uniquement sels de nicotine ; DL = uniquement base classique", correct: false },
+          { text: "MTL = plus de vapeur ; DL = plus de hit", correct: false },
+          { text: "MTL = tirage serré proche cigarette ; DL = tirage aérien, direct poumon, plus de vapeur", correct: true }
+        ]
+      },
+      {
+        question: "Tu dois choisir un liquide pour un pod MTL à petite résistance. Quel PG/VG est souvent le plus sécurisant ?",
+        answers: [
+          { text: "Un liquide très riche en VG pour éviter les fuites", correct: false },
+          { text: "Un liquide plutôt fluide, souvent plus riche en PG, pour bien alimenter le coton", correct: true },
+          { text: "Un liquide 100% VG pour protéger la résistance", correct: false }
+        ]
+      },
+      {
+        question: "Client : “Je vape mais je fume encore 5 cigarettes.” La réaction STOOM la plus intelligente ?",
+        answers: [
+          { text: "Lui dire que vaper et fumer en même temps est forcément inutile", correct: false },
+          { text: "Lui expliquer simplement que cette période passera toute seule", correct: false },
+          { text: "Dédramatiser, analyser les moments où il fume, puis ajuster nicotine, tirage ou matériel", correct: true }
+        ]
+      },
+      {
+        question: "Quel combo est le plus risqué pour un débutant ?",
+        answers: [
+          { text: "Pod MTL + nicotine adaptée", correct: false },
+          { text: "Matériel DL puissant + nicotine élevée", correct: true },
+          { text: "RDL modéré + nicotine modérée", correct: false }
+        ]
+      },
+      {
+        question: "Le client dit : “Ça ne tire plus.” Quelle cause est très fréquente ?",
+        answers: [
+          { text: "Le liquide est devenu marron, donc il n’est plus consommable", correct: false },
+          { text: "Résistance encrassée, coton saturé, airflow obstrué ou matériel mal entretenu", correct: true },
+          { text: "Le PG a évaporé, donc la résistance ne fonctionne plus", correct: false }
+        ]
+      },
+      {
+        question: "Quel discours est le plus professionnel en vente STOOM ?",
+        answers: [
+          { text: "On vend d’abord le matériel le plus cher, puis on justifie le choix", correct: false },
+          { text: "On évite de poser des questions pour ne pas mettre le client mal à l’aise", correct: false },
+          { text: "On propose une solution cohérente et on explique pourquoi elle est adaptée", correct: true }
+        ]
+      },
+      {
+        question: "Un client veut passer de 6 mg à 0 mg d’un coup. Réponse STOOM attendue ?",
+        answers: [
+          { text: "Conseiller une baisse progressive, par exemple alternance 6/3 mg ou 6/0 mg, pour éviter la rechute", correct: true },
+          { text: "Valider immédiatement le 0 mg, car c’est toujours mieux", correct: false },
+          { text: "Passer en DL puissant pour compenser le manque", correct: false }
+        ]
+      },
+      {
+        question: "Pour limiter les retours SAV, le plus important à montrer avant que le client parte est…",
+        answers: [
+          { text: "Seulement la recharge USB", correct: false },
+          { text: "Amorçage, remplissage et réglages de base, comme watts et airflow si applicable", correct: true },
+          { text: "Uniquement comment imbiber ses résistances", correct: false }
+        ]
+      },
+      {
+        question: "Un liquide riche en VG sur un petit pod MTL peut surtout provoquer…",
+        answers: [
+          { text: "Plus de hit et trop de nicotine", correct: false },
+          { text: "Une batterie qui se décharge deux fois plus vite", correct: false },
+          { text: "Une alimentation difficile du coton, donc dry hit ou résistance qui grille vite", correct: true }
+        ]
+      },
+      {
+        question: "Le client veut une vape très serrée mais choisit un clearomiseur DL. Ta meilleure réponse ?",
+        answers: [
+          { text: "Fermer l’airflow au maximum, car ça devient forcément du MTL", correct: false },
+          { text: "Expliquer l’incohérence et réorienter vers du MTL ou vers un matériel plus adapté", correct: true },
+          { text: "Augmenter la nicotine pour que le tirage paraisse plus serré", correct: false }
+        ]
+      },
+      {
+        question: "Tu proposes des résistances de rechange. Quelle justification est la plus crédible ?",
+        answers: [
+          { text: "Éviter la panne et assurer une expérience stable", correct: true },
+          { text: "Augmenter l’autonomie de la batterie", correct: false },
+          { text: "Éviter de les acheter chez un concurrent", correct: false }
+        ]
+      },
+      {
+        question: "Repère STOOM : 10 flacons de 10 ml correspondent en moyenne à…",
+        answers: [
+          { text: "La consommation d’un fumeur d’environ 5 cigarettes par jour", correct: false },
+          { text: "La consommation d’un fumeur d’environ 40 cigarettes par jour", correct: false },
+          { text: "La consommation d’un fumeur d’environ 20 cigarettes par jour", correct: true }
+        ]
+      },
+      {
+        question: "Quand demander un avis Google ?",
+        answers: [
+          { text: "Uniquement si le panier est élevé", correct: false },
+          { text: "Quand le client est satisfait et que l’échange est naturel, sans insister", correct: true },
+          { text: "Dès l’entrée en magasin", correct: false }
+        ]
+      },
+      {
+        question: "Face à un client qui revient énervé, la première action professionnelle est…",
+        answers: [
+          { text: "Remplacer directement le produit, sans diagnostic", correct: false },
+          { text: "Vérifier immédiatement si le client utilise mal son matériel", correct: false },
+          { text: "Écouter, reformuler et diagnostiquer avant de conclure", correct: true }
+        ]
+      }
     ];
 
     const $ = (id) => document.getElementById(id);
@@ -826,15 +807,20 @@
     const certifZone = $("certificat");
 
     function shuffle(arr){
-      for(let i = arr.length - 1; i > 0; i--){
+      const copy = arr.slice();
+
+      for(let i = copy.length - 1; i > 0; i--){
         const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
+        [copy[i], copy[j]] = [copy[j], copy[i]];
       }
 
-      return arr;
+      return copy;
     }
 
-    const quiz = shuffle(Q.map((q, idx) => ({ idx, q })));
+    const quiz = shuffle(Q).map((item) => ({
+      question: item.question,
+      answers: shuffle(item.answers)
+    }));
 
     function escapeHtml(str){
       return String(str)
@@ -849,23 +835,20 @@
       zone.innerHTML = "";
 
       quiz.forEach((item, n) => {
-        const question = item.q[0];
-        const answers = item.q[1];
-
         const qEl = document.createElement("div");
         qEl.className = "qCard";
 
         qEl.innerHTML = `
           <div class="qTop">
-            <p class="qTitle">${escapeHtml(question)}</p>
+            <p class="qTitle">${escapeHtml(item.question)}</p>
             <div class="qIdx">Q${n + 1}/20</div>
           </div>
 
           <div class="answers" role="group" aria-label="question ${n + 1}">
-            ${answers.map((rep, j) => `
+            ${item.answers.map((rep, j) => `
               <label class="opt">
                 <input type="radio" name="q${n}" value="${j}" />
-                <span>${escapeHtml(rep)}</span>
+                <span>${escapeHtml(rep.text)}</span>
               </label>
             `).join("")}
           </div>
@@ -894,12 +877,16 @@
       let score = 0;
 
       quiz.forEach((item, n) => {
-        const correctKeyed = item.q[2];
-        const correct = unkey(correctKeyed);
         const r = document.querySelector(`input[name="q${n}"]:checked`);
-        const val = r ? parseInt(r.value, 10) : null;
 
-        if(val !== null && val === correct){
+        if(!r){
+          return;
+        }
+
+        const selectedIndex = parseInt(r.value, 10);
+        const selectedAnswer = item.answers[selectedIndex];
+
+        if(selectedAnswer && selectedAnswer.correct){
           score++;
         }
       });
@@ -1066,5 +1053,6 @@
     renderQuiz();
     loadLast();
   </script>
+
 </body>
 </html>
