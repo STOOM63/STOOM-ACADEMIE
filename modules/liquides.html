@@ -1,20 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Les e-liquides</title>
-
-<link rel="stylesheet" href="../style.css">
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Académie STOOM — Les e-liquides</title>
-
-  <!-- Si ton ../style.css écrase le design, commente la ligne ci-dessous -->
-  <!-- <link rel="stylesheet" href="../style.css"> -->
 
   <style>
     :root{
@@ -27,14 +16,19 @@
       --accent:#4da3ff;
       --accent2:#2bd9a8;
       --warn:#ffcc66;
+      --bad:#ff6b6b;
       --shadow:0 12px 30px rgba(0,0,0,.35);
       --shadow2:0 18px 55px rgba(0,0,0,.45);
       --r:18px;
     }
-    *{ box-sizing:border-box; }
+
+    *{
+      box-sizing:border-box;
+    }
+
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      font-family:ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
       color:var(--text);
       background:
         radial-gradient(900px 450px at 12% 10%, rgba(77,163,255,.22), transparent 60%),
@@ -42,10 +36,18 @@
         radial-gradient(900px 520px at 50% 120%, rgba(255,255,255,.06), transparent 55%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
     }
-    a{ color:inherit; text-decoration:none; }
-    .wrap{ max-width:1100px; margin:0 auto; padding:22px; }
 
-    /* Topbar */
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:22px;
+    }
+
     .topbar{
       display:flex;
       gap:12px;
@@ -54,6 +56,7 @@
       flex-wrap:wrap;
       margin-bottom:14px;
     }
+
     .crumbs{
       display:flex;
       gap:10px;
@@ -61,13 +64,17 @@
       color:rgba(183,195,255,.85);
       font-size:13px;
     }
+
     .crumbs a{
       border:1px solid var(--line);
       background:rgba(255,255,255,.04);
       padding:8px 10px;
       border-radius:12px;
     }
-    .crumbs a:hover{ background:rgba(255,255,255,.06); }
+
+    .crumbs a:hover{
+      background:rgba(255,255,255,.06);
+    }
 
     .btn{
       border:1px solid rgba(77,163,255,.35);
@@ -79,33 +86,39 @@
       font-size:13px;
       display:inline-flex;
       align-items:center;
+      justify-content:center;
       gap:10px;
       cursor:pointer;
       transition:.18s;
       user-select:none;
     }
+
     .btn:hover{
       transform:translateY(-1px);
       background:rgba(77,163,255,.16);
       box-shadow:0 14px 30px rgba(0,0,0,.25);
     }
+
     .btn.secondary{
       border-color:var(--line);
       background:rgba(255,255,255,.04);
       font-weight:650;
     }
-    .btn.secondary:hover{ background:rgba(255,255,255,.06); }
 
-    /* Hero */
+    .btn.secondary:hover{
+      background:rgba(255,255,255,.06);
+    }
+
     .hero{
       border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
       border-radius:calc(var(--r) + 6px);
       padding:18px;
-      box-shadow:0 12px 30px rgba(0,0,0,.35);
+      box-shadow:var(--shadow);
       overflow:hidden;
       position:relative;
     }
+
     .hero::before{
       content:"";
       position:absolute;
@@ -116,7 +129,11 @@
       pointer-events:none;
       opacity:.8;
     }
-    .hero > *{ position:relative; }
+
+    .hero > *{
+      position:relative;
+    }
+
     .kicker{
       display:inline-flex;
       align-items:center;
@@ -125,15 +142,37 @@
       font-size:13px;
       margin-bottom:10px;
     }
+
     .dot{
-      width:10px;height:10px;border-radius:50%;
+      width:10px;
+      height:10px;
+      border-radius:50%;
       background:var(--accent);
       box-shadow:0 0 0 4px rgba(77,163,255,.16);
     }
-    h1{ margin:0; font-size:24px; letter-spacing:.2px; line-height:1.15; }
-    .sub{ margin:10px 0 0 0; color:var(--muted); font-size:14px; line-height:1.6; max-width:75ch; }
 
-    .pillRow{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    h1{
+      margin:0;
+      font-size:24px;
+      letter-spacing:.2px;
+      line-height:1.15;
+    }
+
+    .sub{
+      margin:10px 0 0 0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+      max-width:82ch;
+    }
+
+    .pillRow{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
     .pill{
       font-size:12px;
       color:rgba(234,240,255,.92);
@@ -145,32 +184,47 @@
       gap:8px;
       align-items:center;
     }
+
     .pDot{
-      width:8px;height:8px;border-radius:50%;
+      width:8px;
+      height:8px;
+      border-radius:50%;
       background:var(--accent2);
       box-shadow:0 0 0 4px rgba(43,217,168,.12);
     }
 
-    /* Layout */
     .layout{
       margin-top:14px;
       display:grid;
-      grid-template-columns: 1.35fr .65fr;
+      grid-template-columns:1.35fr .65fr;
       gap:14px;
       align-items:start;
     }
+
     .panel{
       border:1px solid var(--line);
       background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
       border-radius:var(--r);
-      box-shadow:0 12px 30px rgba(0,0,0,.35);
+      box-shadow:var(--shadow);
       overflow:hidden;
     }
+
     .panelHead{
       padding:14px 14px 10px 14px;
       border-left:4px solid var(--accent);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
     }
-    .panelHead h2{ margin:0; font-size:15px; letter-spacing:.2px; }
+
+    .panelHead h2{
+      margin:0;
+      font-size:15px;
+      letter-spacing:.2px;
+    }
+
     .panelBody{
       padding:0 14px 14px 14px;
       color:var(--muted2);
@@ -178,10 +232,19 @@
       line-height:1.75;
     }
 
-    /* Mobile readability (la clé) */
-    .panelBody p{ margin:10px 0; }
-    .panelBody ul{ margin:8px 0 12px 18px; padding:0; }
-    .panelBody li{ margin:7px 0; }
+    .panelBody p{
+      margin:10px 0;
+    }
+
+    .panelBody ul{
+      margin:8px 0 12px 18px;
+      padding:0;
+    }
+
+    .panelBody li{
+      margin:7px 0;
+    }
+
     .sectionTitle{
       margin:14px 0 6px 0;
       color:#fff;
@@ -198,9 +261,19 @@
       margin:12px 0;
       color:rgba(234,240,255,.95);
     }
+
     .warn{
       border:1px solid rgba(255,204,102,.25);
       background:rgba(255,204,102,.08);
+      border-radius:14px;
+      padding:12px;
+      margin:12px 0;
+      color:rgba(234,240,255,.95);
+    }
+
+    .danger{
+      border:1px solid rgba(255,107,107,.25);
+      background:rgba(255,107,107,.08);
       border-radius:14px;
       padding:12px;
       margin:12px 0;
@@ -214,6 +287,7 @@
       margin:10px 0;
       overflow:hidden;
     }
+
     summary{
       cursor:pointer;
       list-style:none;
@@ -224,33 +298,99 @@
       gap:12px;
       user-select:none;
     }
-    summary::-webkit-details-marker{ display:none; }
-    .sumLeft{ min-width:0; }
-    .sumTitle{ font-weight:850; font-size:13px; color:#fff; line-height:1.25; }
-    .sumSub{ font-size:12px; color:rgba(183,195,255,.85); margin-top:4px; line-height:1.35; }
+
+    summary::-webkit-details-marker{
+      display:none;
+    }
+
+    .sumLeft{
+      min-width:0;
+    }
+
+    .sumTitle{
+      font-weight:850;
+      font-size:13px;
+      color:#fff;
+      line-height:1.25;
+    }
+
+    .sumSub{
+      font-size:12px;
+      color:rgba(183,195,255,.85);
+      margin-top:4px;
+      line-height:1.35;
+    }
+
     .chev{
-      width:32px;height:32px;border-radius:12px;
-      display:grid;place-items:center;
+      width:32px;
+      height:32px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
       border:1px solid rgba(255,255,255,.12);
       background:rgba(255,255,255,.04);
       flex:0 0 auto;
     }
+
     details[open] .chev{
       background:rgba(77,163,255,.12);
       border-color:rgba(77,163,255,.35);
     }
-    .dBody{ padding:0 12px 12px 12px; }
+
+    .dBody{
+      padding:0 12px 12px 12px;
+    }
+
+    .tableWrap{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      overflow:hidden;
+      background:rgba(0,0,0,.10);
+      margin:12px 0;
+    }
+
+    .scrollX{
+      overflow:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:680px;
+    }
+
+    th, td{
+      padding:12px 12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      text-align:left;
+      vertical-align:top;
+      font-size:13px;
+      color:rgba(234,240,255,.92);
+    }
+
+    th{
+      color:#fff;
+      background:rgba(255,255,255,.05);
+      font-weight:900;
+    }
+
+    tr:last-child td{
+      border-bottom:none;
+    }
 
     .check{
       list-style:none;
       margin:10px 0 0 0;
       padding:0;
     }
+
     .check li{
       margin:10px 0;
       padding-left:26px;
       position:relative;
     }
+
     .check li::before{
       content:"✓";
       position:absolute;
@@ -269,220 +409,37 @@
     }
 
     @media (max-width:900px){
-      .layout{ grid-template-columns: 1fr; }
+      .layout{
+        grid-template-columns:1fr;
+      }
     }
+
     @media (max-width:600px){
-      .wrap{ padding:12px; }
-      h1{ font-size:20px; }
-      .sub{ font-size:13px; }
-      .btn{ width:100%; justify-content:center; }
-      .topbar{ gap:10px; }
+      .wrap{
+        padding:12px;
+      }
+
+      h1{
+        font-size:20px;
+      }
+
+      .sub{
+        font-size:13px;
+      }
+
+      .btn{
+        width:100%;
+        justify-content:center;
+      }
+
+      .topbar{
+        gap:10px;
+      }
     }
   </style>
 </head>
 
 <body>
-
-<section class="modules">
-
-<div class="card">
-
-<h2>Composition d'un e-liquide</h2>
-
-<p>
-
-Un e-liquide est généralement composé de quatre éléments principaux.
-
-Le propylène glycol appelé PG.
-
-La glycérine végétale appelée VG.
-
-Les arômes alimentaires.
-
-La nicotine qui peut être présente ou non.
-
-Ces éléments sont mélangés afin de produire un liquide qui sera chauffé par la résistance de la cigarette électronique pour produire un aérosol inhalé par l'utilisateur.
-
-Chaque composant joue un rôle spécifique dans l'expérience de vape.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Le propylène glycol (PG)</h2>
-
-<p>
-
-Le propylène glycol est un liquide fluide utilisé dans de nombreux domaines comme l'industrie alimentaire ou pharmaceutique.
-
-Dans la cigarette électronique, il joue plusieurs rôles importants.
-
-Il transporte les arômes et permet une bonne restitution des saveurs.
-
-Il accentue la sensation dans la gorge appelée hit.
-
-Il facilite l'imprégnation du coton dans les résistances.
-
-Les liquides contenant davantage de propylène glycol produisent généralement moins de vapeur mais offrent souvent un rendu aromatique plus précis.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>La glycérine végétale (VG)</h2>
-
-<p>
-
-La glycérine végétale est un liquide plus épais que le propylène glycol.
-
-Elle est responsable de la production de vapeur.
-
-Les liquides contenant davantage de glycérine végétale produisent généralement une vapeur plus dense et plus visible.
-
-Cependant une proportion élevée de VG peut également encrasser plus rapidement les résistances.
-
-Les liquides riches en VG sont souvent utilisés avec des matériels plus puissants capables de vaporiser ce liquide plus épais.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Les arômes</h2>
-
-<p>
-
-Les arômes sont responsables du goût du e-liquide.
-
-Ils peuvent reproduire de nombreuses saveurs comme les saveurs tabac, fruitées, mentholées ou gourmandes.
-
-Les arômes utilisés dans les e-liquides sont généralement des arômes alimentaires adaptés à l'inhalation.
-
-La qualité des arômes est un élément important pour garantir une bonne expérience de vape.
-
-Un bon arôme doit offrir un goût fidèle et stable dans le temps.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>La nicotine</h2>
-
-<p>
-
-La nicotine peut être présente dans les e-liquides afin de répondre aux besoins des fumeurs qui arrêtent la cigarette.
-
-Elle permet d'éviter les sensations de manque.
-
-Il existe deux formes principales de nicotine utilisées dans les e-liquides.
-
-La nicotine classique appelée nicotine base.
-
-Les sels de nicotine.
-
-Les sels de nicotine permettent généralement une inhalation plus douce même avec des dosages plus élevés.
-
-Ils sont souvent utilisés dans les matériels à faible puissance et les tirages serrés.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Les familles de saveurs</h2>
-
-<p>
-
-Les e-liquides peuvent être classés en plusieurs familles de saveurs.
-
-Les saveurs classiques appelées saveurs tabac.
-
-Ces saveurs sont souvent utilisées par les fumeurs en transition vers la vape.
-
-Les saveurs fruitées qui reproduisent le goût de différents fruits.
-
-Les saveurs mentholées qui offrent une sensation de fraîcheur.
-
-Les saveurs gourmandes inspirées de desserts ou de confiseries.
-
-Il est fréquent que les préférences des vapoteurs évoluent avec le temps.
-
-De nombreux fumeurs commencent avec des saveurs tabac avant d'explorer d'autres familles de saveurs.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Flavour Power</h2>
-
-<p>
-
-Chez STOOM, nous travaillons principalement avec Flavour Power.
-
-Flavour Power est un fabricant français basé en Auvergne.
-
-Ce choix repose à la fois sur la proximité géographique et sur la qualité des produits proposés.
-
-Les e-liquides Flavour Power sont développés avec un haut niveau d'exigence en matière de qualité et de sécurité des arômes.
-
-Les formulations sont simples et transparentes.
-
-Les liquides ne contiennent pas de matières controversées et ne comportent pas de colorants.
-
-Même si certains colorants peuvent être alimentaires, leur inhalation n'est pas souhaitable.
-
-La gamme Origin's propose notamment des saveurs tabac réalistes et peu sucrées particulièrement adaptées aux fumeurs.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Évolution des goûts</h2>
-
-<p>
-
-Les préférences des vapoteurs évoluent souvent avec le temps.
-
-Un fumeur qui débute la cigarette électronique recherche généralement une sensation proche de la cigarette et peut préférer des saveurs tabac.
-
-Avec le temps, beaucoup de vapoteurs explorent d'autres saveurs comme les fruités ou les gourmands.
-
-Le rôle du vendeur est d'accompagner cette évolution et de proposer de nouvelles saveurs lorsque le client le souhaite.
-
-</p>
-
-</div>
-
-
-
-</section>
-
   <div class="wrap">
 
     <div class="topbar">
@@ -491,92 +448,173 @@ Le rôle du vendeur est d'accompagner cette évolution et de proposer de nouvell
         <span>•</span>
         <span>Module</span>
       </div>
+
       <a class="btn secondary" href="quiz.html">Aller au quiz</a>
     </div>
 
     <header class="hero">
-      <div class="kicker"><span class="dot"></span>Académie STOOM • Module</div>
+      <div class="kicker">
+        <span class="dot"></span>
+        Académie STOOM • Module
+      </div>
+
       <h1>Les e-liquides</h1>
+
       <p class="sub">
-        Comprendre la composition (PG/VG/arômes/nicotine), comment ça influence la vape,
-        et comment guider un client vers le bon liquide selon son matériel et son profil.
+        Comprendre la composition d’un e-liquide, le rôle du PG/VG, des arômes et de la nicotine,
+        puis guider le client vers un liquide cohérent avec son matériel, son tirage et son profil.
       </p>
+
       <div class="pillRow">
         <span class="pill"><span class="pDot"></span>PG/VG</span>
         <span class="pill">Saveurs</span>
         <span class="pill">Sevrage</span>
+        <span class="pill">Flavour Power</span>
       </div>
     </header>
 
     <main class="layout">
 
-      <!-- CONTENU -->
       <section class="panel">
         <div class="panelHead">
           <h2>Le contenu du module</h2>
         </div>
+
         <div class="panelBody">
 
           <div class="sectionTitle">1) Composition d’un e-liquide</div>
-          <p>Un e-liquide est généralement composé de 4 éléments :</p>
+
+          <p>
+            Un e-liquide est généralement composé de quatre éléments principaux.
+            Chaque composant a un rôle précis dans l’expérience de vape.
+          </p>
+
           <ul>
-            <li><strong>PG</strong> (propylène glycol)</li>
-            <li><strong>VG</strong> (glycérine végétale)</li>
-            <li><strong>Arômes</strong> alimentaires</li>
-            <li><strong>Nicotine</strong> (présente ou non)</li>
+            <li><strong>PG</strong> : propylène glycol.</li>
+            <li><strong>VG</strong> : glycérine végétale.</li>
+            <li><strong>Arômes</strong> : responsables du goût.</li>
+            <li><strong>Nicotine</strong> : présente ou non selon le besoin du client.</li>
           </ul>
+
           <div class="callout">
-            Le liquide est chauffé par la résistance pour produire un aérosol inhalé. Chaque composant influence
-            le rendu, la sensation et l’entretien (résistances).
+            Le liquide est chauffé par la résistance pour produire un aérosol inhalé.
+            Le choix du liquide influence le goût, la sensation en gorge, la vapeur et la durée de vie des résistances.
           </div>
 
-          <div class="sectionTitle">2) Le propylène glycol (PG)</div>
+          <div class="sectionTitle">2) Le propylène glycol : PG</div>
+
           <p>
-            Le PG est plus fluide. Il est utilisé dans de nombreux domaines (alimentaire/pharma).
-            En vape, il est particulièrement utile pour :
-          </p>
-          <ul>
-            <li>Transporter les arômes → <strong>meilleure restitution des saveurs</strong></li>
-            <li>Renforcer la sensation en gorge → <strong>hit</strong></li>
-            <li>Faciliter l’imprégnation du coton</li>
-          </ul>
-          <p>
-            En général : plus de PG = <strong>moins de vapeur</strong>, mais <strong>plus de précision aromatique</strong>.
+            Le PG est un liquide fluide. En vape, il sert principalement à transporter les arômes,
+            renforcer la sensation en gorge et faciliter l’imprégnation du coton dans certaines résistances.
           </p>
 
-          <div class="sectionTitle">3) La glycérine végétale (VG)</div>
-          <p>La VG est plus épaisse et participe surtout à la production de vapeur.</p>
           <ul>
-            <li>Plus de VG = <strong>vapeur plus dense</strong></li>
-            <li>Mais VG élevée = <strong>encrassement plus rapide</strong> selon les liquides</li>
-            <li>Souvent utilisée avec du matériel plus puissant (qui accepte du liquide épais)</li>
+            <li>Meilleure précision aromatique.</li>
+            <li>Sensation de hit plus marquée.</li>
+            <li>Liquide plus fluide, souvent adapté aux petits pods et au MTL.</li>
+            <li>Production de vapeur plus discrète qu’un liquide riche en VG.</li>
           </ul>
 
-          <div class="sectionTitle">4) Les arômes</div>
+          <div class="callout">
+            <strong>Phrase simple :</strong> plus de PG = souvent plus de sensation et de précision dans les saveurs.
+          </div>
+
+          <div class="sectionTitle">3) La glycérine végétale : VG</div>
+
           <p>
-            Les arômes donnent le goût (tabac, fruité, menthol, gourmand…).
-            La qualité des arômes joue beaucoup sur :
+            La VG est plus épaisse que le PG. Elle participe surtout à la production de vapeur
+            et donne une sensation plus ronde et plus dense.
           </p>
+
           <ul>
-            <li>La fidélité du goût</li>
-            <li>La stabilité dans le temps</li>
-            <li>Le confort (trop sucré = résistance qui s’encrasse vite)</li>
+            <li>Vapeur plus dense et plus visible.</li>
+            <li>Sensation souvent plus douce.</li>
+            <li>Liquide plus épais, pas toujours adapté aux petits pods.</li>
+            <li>Peut encrasser plus rapidement les résistances selon les liquides.</li>
           </ul>
 
-          <div class="sectionTitle">5) La nicotine</div>
+          <div class="warn">
+            <strong>Attention matériel :</strong><br>
+            Un liquide riche en VG peut être trop épais pour certains petits pods.
+            Il faut toujours vérifier la cohérence entre le liquide, la résistance et le matériel.
+          </div>
+
+          <div class="sectionTitle">4) PG/VG : choisir selon le matériel</div>
+
+          <div class="tableWrap">
+            <div class="scrollX">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Profil liquide</th>
+                    <th>Effet principal</th>
+                    <th>Matériel souvent adapté</th>
+                    <th>Point de vigilance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Plus riche en PG</td>
+                    <td>Saveur plus précise, hit plus marqué, liquide plus fluide</td>
+                    <td>Pods, MTL, résistances petites ou peu puissantes</td>
+                    <td>Peut être plus sec ou plus présent en gorge</td>
+                  </tr>
+                  <tr>
+                    <td>Équilibré PG/VG</td>
+                    <td>Compromis entre saveur, vapeur et confort</td>
+                    <td>Matériel polyvalent, MTL/RDL selon résistance</td>
+                    <td>À adapter selon le tirage du client</td>
+                  </tr>
+                  <tr>
+                    <td>Plus riche en VG</td>
+                    <td>Plus de vapeur, sensation plus ronde</td>
+                    <td>Matériel plus puissant, RDL/DL</td>
+                    <td>Peut mal alimenter certains petits pods</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="sectionTitle">5) Les arômes</div>
+
           <p>
-            La nicotine sert à éviter le manque chez un fumeur en transition. On distingue :
+            Les arômes sont responsables du goût du e-liquide.
+            Leur qualité influence fortement le plaisir, la fidélité de la saveur et la stabilité dans le temps.
           </p>
+
+          <ul>
+            <li>Un bon arôme doit rester agréable et stable.</li>
+            <li>Les liquides très sucrés peuvent encrasser les résistances plus rapidement.</li>
+            <li>Le goût conseillé doit correspondre au profil du client et à son objectif.</li>
+          </ul>
+
+          <div class="warn">
+            <strong>Réflexe vendeur :</strong> si un client brûle ses résistances rapidement,
+            vérifier le liquide utilisé, son taux de sucre/arômes, la puissance et la résistance.
+          </div>
+
+          <div class="sectionTitle">6) La nicotine dans les e-liquides</div>
+
+          <p>
+            La nicotine peut être présente pour répondre aux besoins du fumeur en transition.
+            Son rôle principal est d’éviter le manque et de limiter le risque de rechute.
+          </p>
+
           <details open>
             <summary>
               <div class="sumLeft">
-                <div class="sumTitle">Nicotine “base”</div>
-                <div class="sumSub">Classique, sensation parfois plus marquée</div>
+                <div class="sumTitle">Nicotine base</div>
+                <div class="sumSub">Classique • sensation plus directe • dosage adapté au profil</div>
               </div>
               <div class="chev">⌄</div>
             </summary>
+
             <div class="dBody">
-              <p>Format courant, adapté à beaucoup de profils, selon dosage et matériel.</p>
+              <p>
+                La nicotine base est fréquente dans les e-liquides classiques.
+                Elle peut donner un hit plus marqué selon le dosage, le matériel et le tirage.
+              </p>
             </div>
           </details>
 
@@ -584,73 +622,169 @@ Le rôle du vendeur est d'accompagner cette évolution et de proposer de nouvell
             <summary>
               <div class="sumLeft">
                 <div class="sumTitle">Sels de nicotine</div>
-                <div class="sumSub">Plus doux à dosage élevé</div>
+                <div class="sumSub">Plus doux à dosage élevé • faible puissance • tirage serré</div>
               </div>
               <div class="chev">⌄</div>
             </summary>
+
             <div class="dBody">
               <p>
-                Les sels permettent souvent une inhalation plus douce même à dosage élevé.
-                Ils sont très utilisés en <strong>faible puissance</strong> et <strong>tirage serré</strong>.
+                Les sels de nicotine permettent souvent une inhalation plus douce à dosage élevé.
+                Ils sont particulièrement adaptés aux matériels peu puissants et aux tirages serrés.
               </p>
             </div>
           </details>
 
-          <div class="sectionTitle">6) Les familles de saveurs</div>
-          <ul>
-            <li><strong>Classiques (tabac)</strong> : souvent au début (transition)</li>
-            <li><strong>Fruités</strong> : goût fruits</li>
-            <li><strong>Mentholés</strong> : sensation fraîche</li>
-            <li><strong>Gourmands</strong> : desserts/confiseries</li>
-          </ul>
           <div class="callout">
-            Les goûts évoluent souvent : beaucoup commencent par tabac puis explorent fruités/menthol/gourmands.
+            <strong>Règle STOOM :</strong><br>
+            Nicotine élevée = matériel peu puissant et tirage plutôt serré.
+            Nicotine faible = matériel potentiellement plus puissant.
           </div>
 
-          <div class="sectionTitle">7) Flavour Power (auvergnat)</div>
+          <div class="sectionTitle">7) Les familles de saveurs</div>
+
           <p>
-            Chez STOOM, nous travaillons principalement avec <strong>Flavour Power</strong> (fabricant français basé en Auvergne).
-            Ce choix s’appuie sur la proximité et la qualité.
+            Les e-liquides peuvent être classés en plusieurs familles.
+            Bien les connaître aide à orienter le client sans le noyer dans trop de choix.
           </p>
+
+          <div class="tableWrap">
+            <div class="scrollX">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Famille</th>
+                    <th>Utilité en conseil</th>
+                    <th>Point vendeur</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Classiques tabac</td>
+                    <td>Rassurants pour les fumeurs en transition</td>
+                    <td>Souvent proposés au démarrage pour garder des repères</td>
+                  </tr>
+                  <tr>
+                    <td>Fruités</td>
+                    <td>Permettent de s’éloigner progressivement du goût tabac</td>
+                    <td>Très utiles quand le client veut changer sans aller vers le gourmand</td>
+                  </tr>
+                  <tr>
+                    <td>Mentholés</td>
+                    <td>Apportent une sensation de fraîcheur</td>
+                    <td>Intéressants pour anciens fumeurs de menthol ou clients cherchant une vape fraîche</td>
+                  </tr>
+                  <tr>
+                    <td>Gourmands</td>
+                    <td>Saveurs desserts, confiseries ou notes sucrées</td>
+                    <td>Attention aux liquides très sucrés qui peuvent encrasser plus vite</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="callout">
+            Les goûts évoluent souvent : beaucoup de clients commencent par les classiques tabac,
+            puis explorent ensuite les fruités, mentholés ou gourmands.
+          </div>
+
+          <div class="sectionTitle">8) Flavour Power : le choix auvergnat</div>
+
+          <p>
+            Chez STOOM, nous travaillons principalement avec <strong>Flavour Power</strong>,
+            fabricant français basé en Auvergne.
+            Ce choix s’appuie sur la proximité, la qualité et la régularité des produits.
+          </p>
+
           <ul>
-            <li>Formulations simples et transparentes</li>
-            <li>Exigence qualité/sécurité sur les arômes</li>
-            <li>Pas de colorants (même alimentaires, l’inhalation n’est pas souhaitable)</li>
+            <li>Fabricant auvergnat.</li>
+            <li>Formulations simples et transparentes.</li>
+            <li>Exigence qualité sur les arômes.</li>
+            <li>Pas de colorants.</li>
+            <li>Gammes adaptées aux différents profils de clients.</li>
           </ul>
+
           <div class="warn">
-            <strong>À citer au client fumeur :</strong> la gamme <strong>Origin’s</strong> propose des classiques tabac
-            réalistes et peu sucrés, souvent très adaptés en transition.
+            <strong>À citer au client fumeur :</strong><br>
+            La gamme <strong>Origin’s</strong> propose des classiques tabac réalistes et peu sucrés,
+            souvent très adaptés aux fumeurs en transition.
           </div>
 
-          <div class="sectionTitle">8) Évolution des goûts</div>
+          <details>
+            <summary>
+              <div class="sumLeft">
+                <div class="sumTitle">Repères Origin’s</div>
+                <div class="sumSub">Classiques tabac réalistes et peu sucrés</div>
+              </div>
+              <div class="chev">⌄</div>
+            </summary>
+
+            <div class="dBody">
+              <ul>
+                <li><strong>Origin’s Light</strong> : saveur blonde légère.</li>
+                <li><strong>Origin’s Blond</strong> : blond classique.</li>
+                <li><strong>Origin’s Menthe</strong> : pour les fumeurs de menthol doux.</li>
+                <li><strong>Origin’s Vanille</strong> : base tabac blond avec une touche légère de vanille.</li>
+                <li><strong>Origin’s Orient</strong> : blond épicé et légèrement miellé.</li>
+                <li><strong>Origin’s Brun</strong> : plus aromatique, conseillé pour les fumeurs de roulé.</li>
+              </ul>
+            </div>
+          </details>
+
+          <div class="sectionTitle">9) Évolution des goûts</div>
+
           <p>
-            Un fumeur débutant cherche souvent une sensation proche de la cigarette et des saveurs tabac.
-            Ensuite, beaucoup se détachent du tabac et testent d’autres familles.
+            Un fumeur qui débute recherche souvent une sensation proche de la cigarette
+            et peut préférer des classiques tabac. Avec le temps, beaucoup de vapoteurs explorent d’autres familles.
           </p>
+
           <div class="callout">
             <strong>Rôle vendeur :</strong> accompagner cette évolution, proposer des alternatives au bon moment,
-            sans brusquer.
+            sans brusquer et sans faire perdre les repères du client.
+          </div>
+
+          <div class="sectionTitle">10) Erreurs fréquentes à éviter</div>
+
+          <div class="danger">
+            <ul>
+              <li>Proposer un liquide trop épais pour un petit pod.</li>
+              <li>Proposer un liquide trop faible en nicotine à un gros fumeur.</li>
+              <li>Conseiller une saveur trop éloignée des attentes du client dès le départ.</li>
+              <li>Ne pas prévenir qu’un liquide très sucré peut encrasser plus rapidement.</li>
+              <li>Oublier que le liquide doit être cohérent avec le matériel et la résistance.</li>
+            </ul>
           </div>
 
         </div>
       </section>
 
-      <!-- SIDEBAR -->
       <aside class="panel">
         <div class="panelHead">
-          <h2>Guide rapide (conseil)</h2>
+          <h2>Guide rapide conseil liquide</h2>
         </div>
+
         <div class="panelBody">
-          <div class="sectionTitle">Choisir vite</div>
+          <div class="sectionTitle">Choisir vite et juste</div>
+
           <ul class="check">
-            <li>Matériel : plutôt MTL/pod ? → liquide plus fluide souvent ok</li>
-            <li>Matériel puissant ? → peut accepter plus de VG</li>
-            <li>Client fumeur débutant ? → classique tabac souvent rassurant</li>
-            <li>Résistances qui s’encrassent vite ? → attention aux très sucrés</li>
+            <li>Client débutant ou fumeur : classiques tabac souvent rassurants.</li>
+            <li>Petit pod / MTL : liquide plutôt fluide, cohérent avec la résistance.</li>
+            <li>Matériel puissant : liquide plus riche en VG possible.</li>
+            <li>Résistances qui s’encrassent vite : vérifier les liquides très sucrés.</li>
+            <li>Client en manque : vérifier le taux de nicotine avant de changer de saveur.</li>
           </ul>
 
           <div class="callout" style="margin-top:12px;">
-            <strong>Phrase simple :</strong> “Plus de PG = plus de goût / plus de VG = plus de vapeur.”
+            <strong>Phrase simple :</strong><br>
+            “Plus de PG = plus de sensation et de précision.
+            Plus de VG = plus de vapeur.”
+          </div>
+
+          <div class="warn" style="margin-top:12px;">
+            <strong>Rappel STOOM :</strong><br>
+            Le bon liquide n’est pas seulement celui qui a bon goût.
+            C’est celui qui fonctionne avec le matériel et aide le client à ne pas rechuter.
           </div>
 
           <a class="btn" href="materiel.html" style="width:100%; justify-content:center; margin-top:12px;">
