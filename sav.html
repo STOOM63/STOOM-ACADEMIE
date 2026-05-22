@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>SAV STOOM</title>
+
+<link rel="stylesheet" href="../style.css">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Académie STOOM — SAV</title>
+
+  <!-- Si ton ../style.css écrase le design, commente la ligne ci-dessous -->
+  <!-- <link rel="stylesheet" href="../style.css"> -->
+
+  <style>
+    :root{
+      --bg0:#070c18;
+      --bg1:#0a1222;
+      --line:rgba(255,255,255,.10);
+      --text:#eaf0ff;
+      --muted:#b7c3ff;
+      --muted2:#cdd7ff;
+      --accent:#4da3ff;
+      --accent2:#2bd9a8;
+      --warn:#ffcc66;
+      --bad:#ff6b6b;
+      --shadow:0 12px 30px rgba(0,0,0,.35);
+      --shadow2:0 18px 55px rgba(0,0,0,.45);
+      --r:18px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(900px 450px at 12% 10%, rgba(77,163,255,.22), transparent 60%),
+        radial-gradient(850px 420px at 88% 18%, rgba(43,217,168,.16), transparent 60%),
+        radial-gradient(900px 520px at 50% 120%, rgba(255,255,255,.06), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:1100px; margin:0 auto; padding:22px; }
+
+    /* Topbar */
+    .topbar{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .crumbs{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      color:rgba(183,195,255,.85);
+      font-size:13px;
+    }
+    .crumbs a{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      padding:8px 10px;
+      border-radius:12px;
+    }
+    .crumbs a:hover{ background:rgba(255,255,255,.06); }
+
+    .btn{
+      border:1px solid rgba(77,163,255,.35);
+      background:rgba(77,163,255,.10);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:750;
+      font-size:13px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      cursor:pointer;
+      transition:.18s;
+      user-select:none;
+    }
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(77,163,255,.16);
+      box-shadow:0 14px 30px rgba(0,0,0,.25);
+    }
+    .btn.secondary{
+      border-color:var(--line);
+      background:rgba(255,255,255,.04);
+      font-weight:650;
+    }
+    .btn.secondary:hover{ background:rgba(255,255,255,.06); }
+
+    /* Hero */
+    .hero{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border-radius:calc(var(--r) + 6px);
+      padding:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(600px 240px at 15% 0%, rgba(77,163,255,.25), transparent 60%),
+        radial-gradient(520px 220px at 90% 30%, rgba(43,217,168,.18), transparent 60%);
+      pointer-events:none;
+      opacity:.8;
+    }
+    .hero > *{ position:relative; }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:var(--muted2);
+      font-size:13px;
+      margin-bottom:10px;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 4px rgba(77,163,255,.16);
+    }
+    h1{ margin:0; font-size:24px; letter-spacing:.2px; line-height:1.15; }
+    .sub{ margin:10px 0 0 0; color:var(--muted); font-size:14px; line-height:1.6; max-width:85ch; }
+
+    .pillRow{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .pill{
+      font-size:12px;
+      color:rgba(234,240,255,.92);
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.12);
+      padding:6px 10px;
+      border-radius:999px;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+    }
+    .pDot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--accent2);
+      box-shadow:0 0 0 4px rgba(43,217,168,.12);
+    }
+
+    /* Layout */
+    .layout{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:14px;
+      align-items:start;
+    }
+    .panel{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .panelHead{
+      padding:14px 14px 10px 14px;
+      border-left:4px solid var(--accent);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .panelHead h2{ margin:0; font-size:15px; letter-spacing:.2px; }
+    .panelBody{
+      padding:0 14px 14px 14px;
+      color:var(--muted2);
+      font-size:14px;
+      line-height:1.75;
+    }
+
+    /* Mobile readability */
+    .panelBody p{ margin:10px 0; }
+    .panelBody ul{ margin:8px 0 12px 18px; padding:0; }
+    .panelBody li{ margin:7px 0; }
+    .sectionTitle{
+      margin:14px 0 6px 0;
+      color:#fff;
+      font-weight:850;
+      font-size:13px;
+      letter-spacing:.2px;
+    }
+
+    .callout{
+      border:1px solid rgba(43,217,168,.25);
+      background:rgba(43,217,168,.08);
+      border-radius:14px;
+      padding:12px;
+      margin:12px 0;
+      color:rgba(234,240,255,.95);
+    }
+    .warn{
+      border:1px solid rgba(255,204,102,.25);
+      background:rgba(255,204,102,.08);
+      border-radius:14px;
+      padding:12px;
+      margin:12px 0;
+      color:rgba(234,240,255,.95);
+    }
+    .danger{
+      border:1px solid rgba(255,107,107,.25);
+      background:rgba(255,107,107,.08);
+      border-radius:14px;
+      padding:12px;
+      margin:12px 0;
+      color:rgba(234,240,255,.95);
+    }
+
+    details{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.10);
+      border-radius:14px;
+      margin:10px 0;
+      overflow:hidden;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      padding:12px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .sumLeft{ min-width:0; }
+    .sumTitle{ font-weight:850; font-size:13px; color:#fff; line-height:1.25; }
+    .sumSub{ font-size:12px; color:rgba(183,195,255,.85); margin-top:4px; line-height:1.35; }
+    .chev{
+      width:32px;height:32px;border-radius:12px;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      flex:0 0 auto;
+    }
+    details[open] .chev{
+      background:rgba(77,163,255,.12);
+      border-color:rgba(77,163,255,.35);
+    }
+    .dBody{ padding:0 12px 12px 12px; }
+
+    .check{
+      list-style:none;
+      margin:10px 0 0 0;
+      padding:0;
+    }
+    .check li{
+      margin:10px 0;
+      padding-left:26px;
+      position:relative;
+    }
+    .check li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      color:var(--accent2);
+      font-weight:900;
+    }
+
+    footer{
+      margin:18px 0 6px 0;
+      text-align:center;
+      color:rgba(183,195,255,.75);
+      font-size:12px;
+      line-height:1.5;
+    }
+
+    @media (max-width:900px){
+      .layout{ grid-template-columns: 1fr; }
+    }
+    @media (max-width:600px){
+      .wrap{ padding:12px; }
+      h1{ font-size:20px; }
+      .sub{ font-size:13px; }
+      .btn{ width:100%; justify-content:center; }
+      .topbar{ gap:10px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<section class="modules">
+
+
+<div class="card">
+
+<h2>L'importance du SAV</h2>
+
+<p>
+
+Le service après-vente est une partie essentielle du travail en boutique spécialisée.
+
+Même avec du bon matériel, certains clients peuvent rencontrer des difficultés.
+
+Un problème technique ne signifie pas forcément que le matériel est défectueux.
+
+Dans la majorité des cas, il s'agit d'une mauvaise utilisation ou d'un réglage incorrect.
+
+Le rôle du vendeur est de diagnostiquer le problème calmement et d'apporter une solution.
+
+Un bon SAV renforce la confiance du client et améliore la fidélisation.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>La posture face à un problème</h2>
+
+<p>
+
+Lorsqu'un client revient avec un problème, il est important de rester calme et professionnel.
+
+Le vendeur doit écouter attentivement le client et éviter de contredire ou de juger.
+
+Même si l'erreur provient d'une mauvaise utilisation, il est important d'expliquer la solution avec pédagogie.
+
+Le client doit repartir avec une solution claire et le sentiment d'avoir été aidé.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>Diagnostic du problème</h2>
+
+<p>
+
+Avant de conclure qu'un produit est défectueux, il est important d'analyser la situation.
+
+Le vendeur peut poser plusieurs questions :
+
+Quand le problème est-il apparu ?
+
+La résistance a-t-elle été changée récemment ?
+
+Quel liquide est utilisé ?
+
+Quelle puissance est utilisée ?
+
+Ces informations permettent souvent d'identifier rapidement la cause du problème.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>Goût de brûlé</h2>
+
+<p>
+
+Le goût de brûlé est l'un des problèmes les plus fréquents.
+
+Il peut être causé par :
+
+une résistance usée
+
+une résistance mal amorcée
+
+une puissance trop élevée
+
+un niveau de liquide trop bas
+
+Dans la plupart des cas, il suffit de remplacer la résistance et de vérifier les réglages de puissance.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>Fuite de liquide</h2>
+
+<p>
+
+Les fuites peuvent avoir plusieurs causes.
+
+Le réservoir peut être mal fermé.
+
+La résistance peut être mal vissée.
+
+L'airflow peut être mal réglé.
+
+Un remplissage excessif peut également provoquer des fuites.
+
+Le vendeur doit vérifier ces éléments et expliquer au client les bonnes pratiques d'utilisation.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>Mauvais tirage</h2>
+
+<p>
+
+Un tirage inhabituel peut être lié à :
+
+une résistance encrassée
+
+un airflow mal réglé
+
+un liquide trop épais pour la résistance
+
+Dans certains cas, un simple changement de résistance permet de résoudre le problème.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>Problème de batterie</h2>
+
+<p>
+
+Si la cigarette électronique ne fonctionne plus, plusieurs causes sont possibles.
+
+La batterie peut être déchargée.
+
+Le câble de recharge peut être défectueux.
+
+Les contacts peuvent être sales.
+
+Le vendeur doit vérifier ces éléments avant de conclure à une panne du matériel.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>Quand remplacer un produit</h2>
+
+<p>
+
+Si un produit présente un défaut réel, il doit être remplacé conformément aux conditions de garantie.
+
+Il est important d'expliquer clairement au client la procédure et les délais éventuels.
+
+Une gestion transparente du SAV renforce la confiance du client.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>Transformer un problème en opportunité</h2>
+
+<p>
+
+Un problème bien géré peut renforcer la relation avec le client.
+
+Un client qui se sent écouté et accompagné aura tendance à revenir au magasin.
+
+Le SAV est donc une opportunité de montrer le sérieux et le professionnalisme de la boutique.
+
+</p>
+
+</div>
+
+
+</section>
+
+  <div class="wrap">
+
+    <div class="topbar">
+      <div class="crumbs">
+        <a href="../index.html">← Accueil</a>
+        <span>•</span>
+        <span>Module</span>
+      </div>
+      <a class="btn secondary" href="quiz.html">Aller au quiz</a>
+    </div>
+
+    <header class="hero">
+      <div class="kicker"><span class="dot"></span>Académie STOOM • Module</div>
+      <h1>SAV STOOM</h1>
+      <p class="sub">
+        Le SAV n’est pas “un problème”, c’est un moment clé : on rassure, on diagnostique, on règle,
+        et on transforme un retour en confiance (donc en fidélisation).
+      </p>
+      <div class="pillRow">
+        <span class="pill"><span class="pDot"></span>Posture</span>
+        <span class="pill">Diagnostic</span>
+        <span class="pill">Solutions</span>
+      </div>
+    </header>
+
+    <main class="layout">
+
+      <!-- CONTENU -->
+      <section class="panel">
+        <div class="panelHead">
+          <h2>Le contenu du module</h2>
+        </div>
+        <div class="panelBody">
+
+          <div class="sectionTitle">1) L’importance du SAV</div>
+          <p>
+            Le service après-vente est une partie essentielle du travail en boutique spécialisée.
+            Un problème ne veut pas forcément dire “produit défectueux”.
+          </p>
+          <p>Dans la majorité des cas, la cause est :</p>
+          <ul>
+            <li>une mauvaise utilisation</li>
+            <li>un réglage inadapté</li>
+            <li>une résistance en fin de vie</li>
+            <li>un liquide pas adapté au matériel</li>
+          </ul>
+          <div class="callout">
+            <strong>Objectif :</strong> diagnostiquer calmement + apporter une solution claire.
+            Un bon SAV = confiance + fidélisation.
+          </div>
+
+          <div class="sectionTitle">2) Posture face à un problème</div>
+          <div class="warn">
+            <strong>Règle d’or :</strong> le client repart avec le sentiment d’avoir été aidé.
+          </div>
+          <ul class="check">
+            <li>rester calme et professionnel</li>
+            <li>laisser le client expliquer (sans couper)</li>
+            <li>ne pas juger (même si c’est une erreur d’usage)</li>
+            <li>expliquer la solution simplement</li>
+          </ul>
+
+          <div class="sectionTitle">3) Diagnostic rapide (trame STOOM)</div>
+          <details open>
+            <summary>
+              <div class="sumLeft">
+                <div class="sumTitle">Les 5 questions qui débloquent 80% des cas</div>
+                <div class="sumSub">À poser avant de conclure “défaut”</div>
+              </div>
+              <div class="chev">⌄</div>
+            </summary>
+            <div class="dBody">
+              <ul>
+                <li><strong>Quand</strong> le problème est-il apparu ? (tout de suite / après X jours)</li>
+                <li>La <strong>résistance</strong> a-t-elle été changée récemment ?</li>
+                <li><strong>Quel liquide</strong> est utilisé ? (PG/VG / sucré / sels)</li>
+                <li>À <strong>quelle puissance</strong> la personne vape ?</li>
+                <li>Le <strong>tirage / airflow</strong> est comment ? (serré / ouvert / “ça siffle”)</li>
+              </ul>
+            </div>
+          </details>
+
+          <div class="sectionTitle">4) Problème n°1 : goût de brûlé</div>
+          <details open>
+            <summary>
+              <div class="sumLeft">
+                <div class="sumTitle">Causes fréquentes</div>
+                <div class="sumSub">Dans l’ordre : résistance / amorçage / watts</div>
+              </div>
+              <div class="chev">⌄</div>
+            </summary>
+            <div class="dBody">
+              <ul>
+                <li>Résistance usée</li>
+                <li>Résistance mal amorcée</li>
+                <li>Puissance trop élevée</li>
+                <li>Niveau de liquide trop bas</li>
+              </ul>
+            </div>
+          </details>
+
+          <div class="callout">
+            <strong>Solution type :</strong> changer la résistance + vérifier la plage de watts + refaire l’amorçage.
+          </div>
+
+          <div class="sectionTitle">5) Problème n°2 : fuite de liquide</div>
+          <details>
+            <summary>
+              <div class="sumLeft">
+                <div class="sumTitle">Checklist fuite (à vérifier sur place)</div>
+                <div class="sumSub">90% des fuites se règlent avec ça</div>
+              </div>
+              <div class="chev">⌄</div>
+            </summary>
+            <div class="dBody">
+              <ul class="check">
+                <li>réservoir bien fermé / joints OK</li>
+                <li>résistance correctement vissée</li>
+                <li>pas de remplissage “jusqu’au plafond”</li>
+                <li>airflow adapté (selon modèle)</li>
+                <li>liquide pas trop fluide pour la résistance</li>
+              </ul>
+            </div>
+          </details>
+          <div class="warn">
+            <strong>Phrase client :</strong> “On va vérifier l’étanchéité + la résistance + la façon de remplir. On règle ça.”
+          </div>
+
+          <div class="sectionTitle">6) Problème n°3 : mauvais tirage (trop dur / trop aérien)</div>
+          <p>Causes fréquentes :</p>
+          <ul>
+            <li>résistance encrassée</li>
+            <li>airflow mal réglé</li>
+            <li>liquide trop épais pour la résistance</li>
+          </ul>
+          <div class="callout">
+            Souvent : <strong>changer la résistance</strong> + ajuster airflow + vérifier cohérence PG/VG ↔ matériel.
+          </div>
+
+          <div class="sectionTitle">7) Problème n°4 : batterie / appareil ne répond plus</div>
+          <details>
+            <summary>
+              <div class="sumLeft">
+                <div class="sumTitle">Avant de conclure “panne”</div>
+                <div class="sumSub">Test rapide et propre</div>
+              </div>
+              <div class="chev">⌄</div>
+            </summary>
+            <div class="dBody">
+              <ul class="check">
+                <li>batterie chargée ?</li>
+                <li>câble / adaptateur OK ?</li>
+                <li>contacts propres (pin, pas de liquide) ?</li>
+                <li>cartouche / résistance bien enclenchée ?</li>
+                <li>test croisé (autre cartouche / autre résistance si possible) ?</li>
+              </ul>
+            </div>
+          </details>
+
+          <div class="sectionTitle">8) Quand remplacer un produit</div>
+          <p>
+            Si le défaut est réel, on applique la garantie selon les conditions.
+            L’important : <strong>procédure claire</strong> et <strong>transparence</strong>.
+          </p>
+          <div class="warn">
+            Expliquer : ce qu’on teste • ce qu’on envoie • délais • solution provisoire si possible.
+          </div>
+
+          <div class="sectionTitle">9) Transformer un problème en opportunité</div>
+          <p>
+            Un client écouté + aidé revient. Un SAV bien géré renforce la relation et la crédibilité de la boutique.
+          </p>
+          <div class="callout">
+            <strong>Le SAV, c’est la démonstration du sérieux STOOM.</strong>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SIDEBAR -->
+      <aside class="panel">
+        <div class="panelHead">
+          <h2>Script SAV (simple & efficace)</h2>
+        </div>
+        <div class="panelBody">
+          <div class="callout">
+            “Ok, on va regarder ça ensemble. Dites-moi exactement ce qui se passe,
+            et depuis quand.”
+          </div>
+
+          <div class="sectionTitle">Plan d’action en 4 étapes</div>
+          <ul class="check">
+            <li>écouter + reformuler</li>
+            <li>poser les 5 questions</li>
+            <li>faire 1 test / 1 correction à la fois</li>
+            <li>expliquer quoi faire à la maison</li>
+          </ul>
+
+          <div class="danger" style="margin-top:12px;">
+            <strong>À éviter :</strong> accuser le client, remplacer direct sans diagnostic, ou “ça doit être vous”.
+          </div>
+
+          <a class="btn" href="erreurs-clients.html" style="width:100%; justify-content:center; margin-top:12px;">
+            Module suivant : Erreurs fréquentes →
+          </a>
+        </div>
+      </aside>
+
+    </main>
+
+    <footer>
+      Académie STOOM — Module SAV • Support interne
+    </footer>
+
+  </div>
+</body>
+</html>
