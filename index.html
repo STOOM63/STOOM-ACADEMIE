@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Académie STOOM | Formation vendeur</title>
+
+  <!-- Si ton style.css écrase le design, commente cette ligne -->
+  <!-- <link rel="stylesheet" href="style.css"> -->
+
+  <style>
+    :root{
+      --bg0:#070c18;
+      --bg1:#0a1222;
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.04);
+      --line:rgba(255,255,255,.10);
+      --text:#eaf0ff;
+      --muted:#b7c3ff;
+      --muted2:#cdd7ff;
+      --accent:#4da3ff;
+      --accent2:#2bd9a8;
+      --shadow:0 12px 30px rgba(0,0,0,.35);
+      --shadow2:0 18px 55px rgba(0,0,0,.45);
+      --r:18px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(900px 450px at 12% 10%, rgba(77,163,255,.22), transparent 60%),
+        radial-gradient(850px 420px at 88% 18%, rgba(43,217,168,.16), transparent 60%),
+        radial-gradient(900px 520px at 50% 120%, rgba(255,255,255,.06), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:22px;
+    }
+
+    /* HEADER HERO */
+    .hero{
+      position:relative;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border-radius:calc(var(--r) + 6px);
+      padding:22px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(600px 240px at 15% 0%, rgba(77,163,255,.25), transparent 60%),
+        radial-gradient(520px 220px at 90% 30%, rgba(43,217,168,.18), transparent 60%);
+      pointer-events:none;
+      filter: blur(0px);
+      opacity:.8;
+    }
+    .hero > *{ position:relative; }
+
+    .heroTop{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      min-width:260px;
+    }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:var(--muted2);
+      font-size:13px;
+      opacity:.95;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 4px rgba(77,163,255,.16);
+      flex:0 0 auto;
+    }
+    h1{
+      margin:0;
+      font-size:28px;
+      letter-spacing:.2px;
+      line-height:1.15;
+    }
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.55;
+      max-width:70ch;
+    }
+
+    .chips{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--muted2);
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .chip .mini{
+      width:9px;height:9px;border-radius:50%;
+      background:var(--accent2);
+      box-shadow:0 0 0 4px rgba(43,217,168,.14);
+    }
+
+    .intro{
+      margin-top:16px;
+      border-top:1px solid var(--line);
+      padding-top:14px;
+      color:var(--muted2);
+      line-height:1.65;
+      font-size:14px;
+    }
+
+    /* SEARCH + ACTIONS */
+    .toolbar{
+      margin-top:16px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:space-between;
+    }
+    .search{
+      flex:1 1 260px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      padding:12px 12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(255,255,255,.04);
+      box-shadow:0 10px 25px rgba(0,0,0,.18);
+    }
+    .search svg{ flex:0 0 auto; opacity:.9; }
+    .search input{
+      width:100%;
+      border:none;
+      outline:none;
+      background:transparent;
+      color:var(--text);
+      font-size:14px;
+    }
+    .search input::placeholder{ color:rgba(183,195,255,.7); }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .btn{
+      border:1px solid rgba(77,163,255,.35);
+      background:rgba(77,163,255,.10);
+      color:var(--text);
+      padding:11px 12px;
+      border-radius:14px;
+      font-weight:650;
+      font-size:13px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      cursor:pointer;
+      transition:.18s;
+      user-select:none;
+    }
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(77,163,255,.16);
+      box-shadow:0 14px 30px rgba(0,0,0,.25);
+    }
+    .btn.secondary{
+      border-color:var(--line);
+      background:rgba(255,255,255,.04);
+      font-weight:600;
+    }
+    .btn.secondary:hover{
+      background:rgba(255,255,255,.06);
+    }
+
+    /* MODULES GRID */
+    .modules{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+      gap:14px;
+    }
+
+    .card{
+      position:relative;
+      border-radius:var(--r);
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      transition:.18s;
+      min-height:132px;
+      display:flex;
+      flex-direction:column;
+      padding:16px;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(420px 180px at 10% 0%, rgba(77,163,255,.18), transparent 60%),
+        radial-gradient(420px 180px at 95% 30%, rgba(43,217,168,.12), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .card > *{ position:relative; }
+
+    .card:hover{
+      transform:translateY(-3px);
+      box-shadow:var(--shadow2);
+      border-color:rgba(255,255,255,.18);
+    }
+
+    .cardTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .icon{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+    }
+
+    .title{
+      margin:0;
+      font-size:16px;
+      line-height:1.25;
+      letter-spacing:.2px;
+    }
+
+    .desc{
+      margin:10px 0 0 0;
+      color:var(--muted2);
+      line-height:1.55;
+      font-size:13px;
+    }
+
+    .pillRow{
+      margin-top:auto;
+      padding-top:12px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .pill{
+      font-size:12px;
+      color:rgba(234,240,255,.92);
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.12);
+      padding:6px 10px;
+      border-radius:999px;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+    }
+    .pill .pDot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--accent2);
+      box-shadow:0 0 0 4px rgba(43,217,168,.12);
+    }
+
+    /* BADGE CERTIF */
+    .badge{
+      margin-top:18px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+      padding:16px;
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+      justify-content:space-between;
+    }
+    .badge h2{
+      margin:0;
+      font-size:16px;
+      line-height:1.25;
+    }
+    .badge p{
+      margin:8px 0 0 0;
+      color:var(--muted2);
+      line-height:1.65;
+      font-size:14px;
+      max-width:70ch;
+    }
+    .score{
+      margin-left:auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(43,217,168,.30);
+      background:rgba(43,217,168,.10);
+      font-weight:750;
+      white-space:nowrap;
+    }
+
+    footer{
+      margin:18px 0 6px 0;
+      text-align:center;
+      color:rgba(183,195,255,.75);
+      font-size:12px;
+      line-height:1.5;
+    }
+
+    /* MOBILE */
+    @media (max-width:600px){
+      .wrap{ padding:12px; }
+      h1{ font-size:22px; }
+      .subtitle{ font-size:13px; }
+      .hero{ padding:16px; }
+      .toolbar{ gap:10px; }
+      .btn{ width:100%; justify-content:center; }
+      .actions{ width:100%; }
+      .score{ width:100%; justify-content:center; }
+      .modules{ gap:12px; }
+      .card{ min-height:unset; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header class="hero">
+      <div class="heroTop">
+        <div class="brand">
+          <div class="kicker"><span class="dot"></span>Académie interne • STOOM Clermont-Ferrand</div>
+          <h1>Formation vendeur STOOM</h1>
+          <p class="subtitle">
+            Maîtriser les bases de la vape, le conseil sevrage, la vente et le SAV.
+            Parcours à suivre avant le quiz de validation.
+          </p>
+        </div>
+
+        <div class="chips">
+          <div class="chip"><span class="mini"></span>Parcours débutant</div>
+          <div class="chip">11 modules</div>
+          <div class="chip">Version mobile optimisée</div>
+        </div>
+      </div>
+
+      <div class="intro">
+        <strong>Objectif :</strong> assurer un accompagnement sérieux et rassurant des clients souhaitant réduire ou arrêter le tabac.
+        Chaque module se consulte avant le quiz final (certification interne).
+      </div>
+
+      <div class="toolbar">
+        <div class="search">
+          <!-- loupe -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M16.5 16.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input id="search" type="search" placeholder="Rechercher un module (ex : nicotine, SAV, tirage…)" />
+        </div>
+
+        <div class="actions">
+          <button class="btn secondary" type="button" id="openAll">
+            Ouvrir tout
+          </button>
+          <button class="btn" type="button" id="clearSearch">
+            Effacer recherche
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="modules" id="modulesList">
+
+      <a class="card" href="modules/presentation.html" data-tags="presentation valeurs posture stoom">
+        <div class="cardTop">
+          <div>
+            <h2 class="title">Présentation STOOM</h2>
+            <p class="desc">Valeurs du magasin et rôle du vendeur.</p>
+          </div>
+          <div class="icon" aria-hidden="true">🏪</div>
+        </div>
+        <div class="pillRow">
+          <span class="pill"><span class="pDot"></span>Fondamentaux</span>
+          <span class="pill">Posture</span>
+        </div>
+      </a>
+
+      <a class="card" href="modules/vape.html" data-tags="vape fonctionnement resistance batterie pod kit">
+        <div class="cardTop">
+          <div>
+            <h2 class="title">Comprendre la vape</h2>
+            <p class="desc">Fonctionnement de la cigarette électronique.</p>
+          </div>
+          <div class="icon" aria-hidden="true">⚙️</div>
+        </div>
+        <div class="pillRow">
+          <span class="pill"><span class="pDot"></span>Technique</span>
+          <span class="pill">Bases</span>
+        </div>
+      </a>
+
+      <a class="card" href="modules/tirages.html" data-tags="tirage mtl rdl dl airflow hit">
+        <div class="cardTop">
+          <div>
+            <h2 class="title">Types de tirage</h2>
+            <p class="desc">MTL • RDL • DL (et comment choisir).</p>
+          </div>
+          <div class="icon" aria-hidden="true">🌬️</div>
+        </div>
+        <div class="pillRow">
+          <span class="pill"><span class="pDot"></span>Conseil</span>
+          <span class="pill">Confort</span>
+        </div>
+      </a>
+
+      <a class="card" href="modules/nicotine.html" data-tags="nicotine dosage sevrage sels hit manque">
+        <div class="cardTop">
+          <div>
+            <h2 class="title">Nicotine</h2>
+            <p class="desc">Dépendance, dosage, baisse progressive.</p>
+          </div>
+          <div class="icon" aria-hidden="true">🧠</div>
+        </div>
+        <div class="pillRow">
+          <span class="pill"><span class="pDot"></span>Sevrage</span>
+          <span class="pill">Dosages</span>
+        </div>
+      </a>
+
+      <a class="card" href="modules/liquides.html" data-tags="eliquide pg vg aromes saveurs origins">
+        <div class="cardTop">
+          <div>
+            <h2 class="title">E-liquides</h2>
+            <p class="desc">PG/VG, arômes, familles de saveurs.</p>
+          </div>
+          <div class="icon" aria-hidden="true">🧪</div>
+        </div>
+        <div class="pillRow">
+          <span class="pill"><span class="pDot"></span>Goûts</span>
+          <span class="pill">Compréhension</span>
+        </div>
+      </a>
+
+      <a class="card" href="modules/materiel.html" data-tags="materiel pod kit box resistance ohm watts">
+        <div class="cardTop">
+          <div>
+            <h2 class="title">Matériel</h2>
+            <p class="desc">Choisir la bonne cigarette électronique.</p>
+          </div>
+          <div class="icon" aria-hidden="true">🔋</div>
+        </div>
+        <div class="pillRow">
+          <span class="pill"><span class="pDot"></span>Recommandation</span>
+          <span class="pill">Réglages</span>
+        </div>
+      </a>
+
+      <a class="card" href="modules/analyse-client.html" data-tags="analyse client questions besoin fumeur">
+        <div class="cardTop">
+          <div>
+            <h2 class="title">Analyse client</h2>
+            <p class="desc">Comprendre les besoins du fumeur.</p>
+          </div>
+          <div class="icon" aria-hidden="true">🗣️</div>
+        </div>
+        <div class="pillRow">
+          <span class="pill"><span class="pDot"></span>Découverte</span>
+          <span class="pill">Questions</span>
+        </div>
+      </a>
+
+      <a class="card" href="modules/vente.html" data-tags="vente trame vente additionnelle objections">
+        <div class="cardTop">
+          <div>
+            <h2 class="title">Technique de vente</h2>
+            <p class="desc">Méthode de vente STOOM et ventes additionnelles.</p>
+          </div>
+          <div class="icon" aria-hidden="true">💬</div>
+        </div>
+        <div class="pillRow">
+          <span class="pill"><span class="pDot"></span>Trame</span>
+          <span class="pill">Add-on</span>
+        </div>
+      </a>
+
+      <a class="card" href="modules/sav.html" data-tags="sav diagnostic fuite resistance brulee garantie">
+        <div class="cardTop">
+          <div>
+            <h2 class="title">SAV</h2>
+            <p class="desc">Diagnostic et gestion des problèmes.</p>
+          </div>
+          <div class="icon" aria-hidden="true">🛠️</div>
+        </div>
+        <div class="pillRow">
+          <span class="pill"><span class="pDot"></span>Support</span>
+          <span class="pill">Fidélisation</span>
+        </div>
+      </a>
+
+      <a class="card" href="modules/erreurs-clients.html" data-tags="erreurs frequentes toux fuite surdosage sousdosage">
+        <div class="cardTop">
+          <div>
+            <h2 class="title">Erreurs fréquentes</h2>
+            <p class="desc">Problèmes courants des vapoteurs (et solutions).</p>
+          </div>
+          <div class="icon" aria-hidden="true">⚠️</div>
+        </div>
+        <div class="pillRow">
+          <span class="pill"><span class="pDot"></span>Diagnostic</span>
+          <span class="pill">Solutions</span>
+        </div>
+      </a>
+
+      <a class="card" href="modules/quiz.html" data-tags="quiz certification test evaluation">
+        <div class="cardTop">
+          <div>
+            <h2 class="title">Quiz & Certification</h2>
+            <p class="desc">Validation des connaissances vendeur.</p>
+          </div>
+          <div class="icon" aria-hidden="true">✅</div>
+        </div>
+        <div class="pillRow">
+          <span class="pill"><span class="pDot"></span>Final</span>
+          <span class="pill">Score</span>
+        </div>
+      </a>
+
+    </section>
+
+    <section class="badge">
+      <div>
+        <h2>Certification vendeur STOOM</h2>
+        <p>
+          Une fois les modules consultés, le vendeur passe le quiz final.
+          Objectif : <strong>16 / 20</strong> minimum pour obtenir la certification interne.
+        </p>
+      </div>
+      <div class="score">🎯 Seuil : 16/20</div>
+    </section>
+  <section class="badge" id="certifBadge">
+  <div>
+    <h2 id="certifTitle">Certification vendeur STOOM</h2>
+
+    <p id="certifDesc">
+      Une fois les modules consultés, le vendeur passe le quiz final.
+      Objectif : <strong>16 / 20</strong> minimum pour obtenir la certification interne.
+    </p>
+
+    <div id="certifActions" style="display:none; margin-top:12px; gap:10px; flex-wrap:wrap;">
+      <a class="btn" href="modules/quiz.html">Voir / Repasser le quiz</a>
+      <button class="btn secondary" type="button" id="btnPrintCertif">Imprimer le certificat</button>
+      <button class="btn secondary" type="button" id="btnClearCertif">Retirer l’affichage</button>
+    </div>
+  </div>
+
+  <div class="score" id="certifScoreBox">🎯 Seuil : 16/20</div>
+</section>
+
+    <footer>
+      Formation interne STOOM — Support pédagogique destiné aux vendeurs<br/>
+      Version modernisée (responsive mobile)
+    </footer>
+
+  </div>
+
+  <script>
+    // Recherche instantanée (sans dépendances)
+    const search = document.getElementById("search");
+    const list = document.getElementById("modulesList");
+    const cards = Array.from(list.querySelectorAll(".card"));
+    const clearBtn = document.getElementById("clearSearch");
+    const openAllBtn = document.getElementById("openAll");
+
+    function applyFilter(){
+      const q = (search.value || "").trim().toLowerCase();
+      cards.forEach(card => {
+        const text = (card.innerText + " " + (card.dataset.tags || "")).toLowerCase();
+        card.style.display = text.includes(q) ? "" : "none";
+      });
+    }
+
+    search.addEventListener("input", applyFilter);
+    clearBtn.addEventListener("click", () => {
+      search.value = "";
+      applyFilter();
+      search.focus();
+    });
+
+    // "Ouvrir tout" : ici, on fait juste un scroll vers la grille pour un ressenti "app"
+    openAllBtn.addEventListener("click", () => {
+      window.scrollTo({ top: list.offsetTop - 10, behavior: "smooth" });
+    });
+  </script>
+<script>
+  // Affichage certification sur la page d'accueil
+  (function(){
+    const title = document.getElementById("certifTitle");
+    const desc = document.getElementById("certifDesc");
+    const scoreBox = document.getElementById("certifScoreBox");
+    const actions = document.getElementById("certifActions");
+
+    const btnPrint = document.getElementById("btnPrintCertif");
+    const btnClear = document.getElementById("btnClearCertif");
+
+    function loadCertif(){
+      const raw = localStorage.getItem("certifSTOOM_OK");
+      if(!raw) return null;
+      try { return JSON.parse(raw); } catch(e){ return null; }
+    }
+
+    const c = loadCertif();
+
+    if(c && c.vendeur && typeof c.score === "number" && c.date){
+      // Mode "certifié"
+      title.textContent = "Certification obtenue ✅";
+      desc.innerHTML = `
+        <strong>${escapeHtml(c.vendeur)}</strong> est certifié STOOM.<br>
+        Score : <strong>${c.score} / 20</strong> • Date : <strong>${escapeHtml(c.date)}</strong>
+      `;
+
+      scoreBox.textContent = "🏅 Certifié";
+      scoreBox.style.borderColor = "rgba(43,217,168,.30)";
+      scoreBox.style.background = "rgba(43,217,168,.10)";
+
+      actions.style.display = "flex";
+
+      // Imprimer : on ouvre le quiz dans un nouvel onglet et on lance print
+      // (le quiz a déjà un mode print certificate)
+      btnPrint.addEventListener("click", () => {
+        const w = window.open("modules/quiz.html", "_blank");
+        if(!w) return;
+        // Dès que ça charge, on tente d’imprimer
+        w.addEventListener("load", () => {
+          try { w.print(); } catch(e){}
+        });
+      });
+
+      // Retirer l'affichage
+      btnClear.addEventListener("click", () => {
+        localStorage.removeItem("certifSTOOM_OK");
+        location.reload();
+      });
+    }
+
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+  })();
+</script>
+  
+</body>
+</html>
