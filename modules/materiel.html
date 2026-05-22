@@ -1,20 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Choisir le matériel</title>
-
-<link rel="stylesheet" href="../style.css">
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Académie STOOM — Choisir le matériel</title>
-
-  <!-- Si ton ../style.css écrase le design, commente la ligne ci-dessous -->
-  <!-- <link rel="stylesheet" href="../style.css"> -->
 
   <style>
     :root{
@@ -32,10 +21,14 @@
       --shadow2:0 18px 55px rgba(0,0,0,.45);
       --r:18px;
     }
-    *{ box-sizing:border-box; }
+
+    *{
+      box-sizing:border-box;
+    }
+
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      font-family:ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
       color:var(--text);
       background:
         radial-gradient(900px 450px at 12% 10%, rgba(77,163,255,.22), transparent 60%),
@@ -43,10 +36,18 @@
         radial-gradient(900px 520px at 50% 120%, rgba(255,255,255,.06), transparent 55%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
     }
-    a{ color:inherit; text-decoration:none; }
-    .wrap{ max-width:1100px; margin:0 auto; padding:22px; }
 
-    /* Topbar */
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:22px;
+    }
+
     .topbar{
       display:flex;
       gap:12px;
@@ -55,6 +56,7 @@
       flex-wrap:wrap;
       margin-bottom:14px;
     }
+
     .crumbs{
       display:flex;
       gap:10px;
@@ -62,13 +64,17 @@
       color:rgba(183,195,255,.85);
       font-size:13px;
     }
+
     .crumbs a{
       border:1px solid var(--line);
       background:rgba(255,255,255,.04);
       padding:8px 10px;
       border-radius:12px;
     }
-    .crumbs a:hover{ background:rgba(255,255,255,.06); }
+
+    .crumbs a:hover{
+      background:rgba(255,255,255,.06);
+    }
 
     .btn{
       border:1px solid rgba(77,163,255,.35);
@@ -80,33 +86,39 @@
       font-size:13px;
       display:inline-flex;
       align-items:center;
+      justify-content:center;
       gap:10px;
       cursor:pointer;
       transition:.18s;
       user-select:none;
     }
+
     .btn:hover{
       transform:translateY(-1px);
       background:rgba(77,163,255,.16);
       box-shadow:0 14px 30px rgba(0,0,0,.25);
     }
+
     .btn.secondary{
       border-color:var(--line);
       background:rgba(255,255,255,.04);
       font-weight:650;
     }
-    .btn.secondary:hover{ background:rgba(255,255,255,.06); }
 
-    /* Hero */
+    .btn.secondary:hover{
+      background:rgba(255,255,255,.06);
+    }
+
     .hero{
       border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
       border-radius:calc(var(--r) + 6px);
       padding:18px;
       box-shadow:var(--shadow);
       overflow:hidden;
       position:relative;
     }
+
     .hero::before{
       content:"";
       position:absolute;
@@ -117,7 +129,11 @@
       pointer-events:none;
       opacity:.8;
     }
-    .hero > *{ position:relative; }
+
+    .hero > *{
+      position:relative;
+    }
+
     .kicker{
       display:inline-flex;
       align-items:center;
@@ -126,15 +142,37 @@
       font-size:13px;
       margin-bottom:10px;
     }
+
     .dot{
-      width:10px;height:10px;border-radius:50%;
+      width:10px;
+      height:10px;
+      border-radius:50%;
       background:var(--accent);
       box-shadow:0 0 0 4px rgba(77,163,255,.16);
     }
-    h1{ margin:0; font-size:24px; letter-spacing:.2px; line-height:1.15; }
-    .sub{ margin:10px 0 0 0; color:var(--muted); font-size:14px; line-height:1.6; max-width:75ch; }
 
-    .pillRow{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    h1{
+      margin:0;
+      font-size:24px;
+      letter-spacing:.2px;
+      line-height:1.15;
+    }
+
+    .sub{
+      margin:10px 0 0 0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+      max-width:82ch;
+    }
+
+    .pillRow{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
     .pill{
       font-size:12px;
       color:rgba(234,240,255,.92);
@@ -146,20 +184,23 @@
       gap:8px;
       align-items:center;
     }
+
     .pDot{
-      width:8px;height:8px;border-radius:50%;
+      width:8px;
+      height:8px;
+      border-radius:50%;
       background:var(--accent2);
       box-shadow:0 0 0 4px rgba(43,217,168,.12);
     }
 
-    /* Layout */
     .layout{
       margin-top:14px;
       display:grid;
-      grid-template-columns: 1.35fr .65fr;
+      grid-template-columns:1.35fr .65fr;
       gap:14px;
       align-items:start;
     }
+
     .panel{
       border:1px solid var(--line);
       background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
@@ -167,6 +208,7 @@
       box-shadow:var(--shadow);
       overflow:hidden;
     }
+
     .panelHead{
       padding:14px 14px 10px 14px;
       border-left:4px solid var(--accent);
@@ -175,7 +217,13 @@
       justify-content:space-between;
       gap:10px;
     }
-    .panelHead h2{ margin:0; font-size:15px; letter-spacing:.2px; }
+
+    .panelHead h2{
+      margin:0;
+      font-size:15px;
+      letter-spacing:.2px;
+    }
+
     .panelBody{
       padding:0 14px 14px 14px;
       color:var(--muted2);
@@ -183,10 +231,19 @@
       line-height:1.75;
     }
 
-    /* Mobile readability */
-    .panelBody p{ margin:10px 0; }
-    .panelBody ul{ margin:8px 0 12px 18px; padding:0; }
-    .panelBody li{ margin:7px 0; }
+    .panelBody p{
+      margin:10px 0;
+    }
+
+    .panelBody ul{
+      margin:8px 0 12px 18px;
+      padding:0;
+    }
+
+    .panelBody li{
+      margin:7px 0;
+    }
+
     .sectionTitle{
       margin:14px 0 6px 0;
       color:#fff;
@@ -203,6 +260,7 @@
       margin:12px 0;
       color:rgba(234,240,255,.95);
     }
+
     .warn{
       border:1px solid rgba(255,204,102,.25);
       background:rgba(255,204,102,.08);
@@ -211,6 +269,7 @@
       margin:12px 0;
       color:rgba(234,240,255,.95);
     }
+
     .danger{
       border:1px solid rgba(255,107,107,.25);
       background:rgba(255,107,107,.08);
@@ -227,6 +286,7 @@
       margin:10px 0;
       overflow:hidden;
     }
+
     summary{
       cursor:pointer;
       list-style:none;
@@ -237,33 +297,99 @@
       gap:12px;
       user-select:none;
     }
-    summary::-webkit-details-marker{ display:none; }
-    .sumLeft{ min-width:0; }
-    .sumTitle{ font-weight:850; font-size:13px; color:#fff; line-height:1.25; }
-    .sumSub{ font-size:12px; color:rgba(183,195,255,.85); margin-top:4px; line-height:1.35; }
+
+    summary::-webkit-details-marker{
+      display:none;
+    }
+
+    .sumLeft{
+      min-width:0;
+    }
+
+    .sumTitle{
+      font-weight:850;
+      font-size:13px;
+      color:#fff;
+      line-height:1.25;
+    }
+
+    .sumSub{
+      font-size:12px;
+      color:rgba(183,195,255,.85);
+      margin-top:4px;
+      line-height:1.35;
+    }
+
     .chev{
-      width:32px;height:32px;border-radius:12px;
-      display:grid;place-items:center;
+      width:32px;
+      height:32px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
       border:1px solid rgba(255,255,255,.12);
       background:rgba(255,255,255,.04);
       flex:0 0 auto;
     }
+
     details[open] .chev{
       background:rgba(77,163,255,.12);
       border-color:rgba(77,163,255,.35);
     }
-    .dBody{ padding:0 12px 12px 12px; }
+
+    .dBody{
+      padding:0 12px 12px 12px;
+    }
+
+    .tableWrap{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      overflow:hidden;
+      background:rgba(0,0,0,.10);
+      margin:12px 0;
+    }
+
+    .scrollX{
+      overflow:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:680px;
+    }
+
+    th, td{
+      padding:12px 12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      text-align:left;
+      vertical-align:top;
+      font-size:13px;
+      color:rgba(234,240,255,.92);
+    }
+
+    th{
+      color:#fff;
+      background:rgba(255,255,255,.05);
+      font-weight:900;
+    }
+
+    tr:last-child td{
+      border-bottom:none;
+    }
 
     .check{
       list-style:none;
       margin:10px 0 0 0;
       padding:0;
     }
+
     .check li{
       margin:10px 0;
       padding-left:26px;
       position:relative;
     }
+
     .check li::before{
       content:"✓";
       position:absolute;
@@ -282,190 +408,37 @@
     }
 
     @media (max-width:900px){
-      .layout{ grid-template-columns: 1fr; }
+      .layout{
+        grid-template-columns:1fr;
+      }
     }
+
     @media (max-width:600px){
-      .wrap{ padding:12px; }
-      h1{ font-size:20px; }
-      .sub{ font-size:13px; }
-      .btn{ width:100%; justify-content:center; }
-      .topbar{ gap:10px; }
+      .wrap{
+        padding:12px;
+      }
+
+      h1{
+        font-size:20px;
+      }
+
+      .sub{
+        font-size:13px;
+      }
+
+      .btn{
+        width:100%;
+        justify-content:center;
+      }
+
+      .topbar{
+        gap:10px;
+      }
     }
   </style>
 </head>
 
 <body>
-
-<section class="modules">
-
-<div class="card">
-
-<h2>L'importance du choix du matériel</h2>
-
-<p>
-
-Le choix du matériel est un élément déterminant dans la réussite du passage à la cigarette électronique.
-
-Un matériel mal adapté peut provoquer une mauvaise expérience et conduire le client à retourner vers la cigarette.
-
-Le rôle du vendeur est donc d'analyser les besoins du client afin de proposer un matériel cohérent avec :
-
-sa consommation de cigarettes
-
-son besoin en nicotine
-
-le type de tirage souhaité
-
-ses habitudes d'utilisation
-
-Un bon conseil matériel facilite grandement la transition vers la vape.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Les pods</h2>
-
-<p>
-
-Les pods sont des cigarettes électroniques compactes et simples d'utilisation.
-
-Ils sont généralement composés d'une batterie et d'une cartouche contenant la résistance et le e-liquide.
-
-Les pods sont souvent utilisés avec des tirages serrés ou semi serrés.
-
-Ils sont particulièrement adaptés aux fumeurs qui débutent la cigarette électronique.
-
-Leur simplicité d'utilisation et leur format compact en font une solution pratique pour de nombreux utilisateurs.
-
-Les pods fonctionnent généralement avec des puissances faibles et sont souvent utilisés avec des taux de nicotine plus élevés.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Les clearomiseurs</h2>
-
-<p>
-
-Le clearomiseur est le réservoir qui contient le liquide et la résistance.
-
-Contrairement aux cartouches des pods, les résistances peuvent être remplacées séparément.
-
-Les clearomiseurs offrent souvent davantage de possibilités de réglage et peuvent être utilisés avec différents types de tirage.
-
-Certains clearomiseurs sont conçus pour un tirage serré alors que d'autres sont destinés à une vape plus aérienne.
-
-Le choix du clearomiseur doit être cohérent avec le type de tirage recherché.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>La puissance</h2>
-
-<p>
-
-La puissance correspond à l'énergie envoyée dans la résistance.
-
-Elle est généralement exprimée en watts.
-
-Plus la puissance est élevée, plus la résistance chauffe et plus la production de vapeur est importante.
-
-Cependant une puissance trop élevée peut brûler le coton de la résistance et provoquer un goût de brûlé.
-
-La puissance doit toujours être adaptée à la résistance utilisée.
-
-Les fabricants indiquent généralement une plage de puissance recommandée pour chaque résistance.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>La valeur des résistances</h2>
-
-<p>
-
-La valeur d'une résistance est exprimée en ohms.
-
-Les résistances avec une valeur élevée sont généralement utilisées pour des tirages serrés avec une puissance faible.
-
-Les résistances avec une valeur plus basse permettent une production de vapeur plus importante et sont utilisées avec des puissances plus élevées.
-
-La valeur de la résistance influence donc fortement le type de vape obtenu.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Adapter matériel et nicotine</h2>
-
-<p>
-
-Le choix du matériel doit toujours être cohérent avec le taux de nicotine utilisé.
-
-Plus le taux de nicotine est élevé, moins le matériel doit être puissant.
-
-Un matériel trop puissant avec un taux de nicotine élevé peut produire un hit trop fort et rendre la vape désagréable.
-
-À l'inverse, un matériel très peu puissant avec un taux de nicotine très faible peut ne pas satisfaire les besoins du fumeur.
-
-Le vendeur doit toujours vérifier la cohérence entre le matériel, la puissance et le taux de nicotine.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Erreurs fréquentes</h2>
-
-<p>
-
-Certaines erreurs sont fréquentes dans le conseil matériel.
-
-Proposer un matériel trop puissant à un débutant.
-
-Utiliser un taux de nicotine élevé avec un matériel très aérien.
-
-Ne pas expliquer comment amorcer une résistance neuve.
-
-Ne pas expliquer les réglages de puissance.
-
-Ces erreurs peuvent entraîner une mauvaise expérience pour le client.
-
-Le rôle du vendeur est d'accompagner le client afin d'éviter ces situations.
-
-</p>
-
-</div>
-
-
-
-</section>
-
   <div class="wrap">
 
     <div class="topbar">
@@ -474,94 +447,223 @@ Le rôle du vendeur est d'accompagner le client afin d'éviter ces situations.
         <span>•</span>
         <span>Module</span>
       </div>
+
       <a class="btn secondary" href="quiz.html">Aller au quiz</a>
     </div>
 
     <header class="hero">
-      <div class="kicker"><span class="dot"></span>Académie STOOM • Module</div>
+      <div class="kicker">
+        <span class="dot"></span>
+        Académie STOOM • Module
+      </div>
+
       <h1>Choisir le matériel</h1>
+
       <p class="sub">
-        Le bon matériel fait (souvent) la réussite d’un sevrage. Ici : pods, clearomiseurs, puissance, ohms,
-        et surtout la règle STOOM : nicotine ↔ puissance ↔ tirage.
+        Le bon matériel fait souvent la réussite d’une transition vers la vape.
+        Ici : pods, clearomiseurs, puissance, ohms, autonomie et surtout la règle STOOM :
+        nicotine, puissance et tirage doivent toujours être cohérents.
       </p>
+
       <div class="pillRow">
         <span class="pill"><span class="pDot"></span>Recommandation</span>
         <span class="pill">Réglages</span>
         <span class="pill">Cohérence nicotine</span>
+        <span class="pill">Confort client</span>
       </div>
     </header>
 
     <main class="layout">
 
-      <!-- CONTENU -->
       <section class="panel">
         <div class="panelHead">
           <h2>Le contenu du module</h2>
         </div>
+
         <div class="panelBody">
 
           <div class="sectionTitle">1) L’importance du choix du matériel</div>
+
           <p>
-            Le choix du matériel est déterminant dans la réussite de la transition. Un matériel mal adapté peut provoquer
-            une mauvaise expérience et pousser le client à retourner vers la cigarette.
+            Le choix du matériel est déterminant dans la réussite de la transition.
+            Un matériel mal adapté peut provoquer une mauvaise expérience et pousser le client à retourner vers la cigarette.
           </p>
-          <p>Le rôle du vendeur est de proposer un matériel cohérent avec :</p>
+
+          <p>
+            Le rôle du vendeur est d’analyser le profil du client avant toute proposition.
+            Le matériel doit être cohérent avec :
+          </p>
+
           <ul>
-            <li>sa consommation de cigarettes</li>
-            <li>son besoin en nicotine</li>
-            <li>le type de tirage souhaité</li>
-            <li>ses habitudes d’utilisation</li>
+            <li>sa consommation de cigarettes ;</li>
+            <li>son besoin réel en nicotine ;</li>
+            <li>le type de tirage recherché ;</li>
+            <li>ses habitudes d’utilisation ;</li>
+            <li>son besoin de simplicité, de discrétion ou de vapeur ;</li>
+            <li>son budget et sa capacité à entretenir le matériel.</li>
           </ul>
+
           <div class="callout">
-            <strong>But :</strong> confort + simplicité + satisfaction nicotine = moins de rechute.
+            <strong>But :</strong> confort + simplicité + satisfaction nicotine = moins de frustration et moins de rechute.
+          </div>
+
+          <div class="warn">
+            <strong>Principe STOOM :</strong><br>
+            Le client ne doit pas s’adapter au matériel.
+            C’est le matériel qui doit être adapté au client.
           </div>
 
           <div class="sectionTitle">2) Les pods</div>
+
           <p>
-            Les pods sont compacts et simples. Souvent : <strong>batterie + cartouche</strong> (résistance intégrée ou non).
-            Ils sont très adaptés aux débutants.
+            Les pods sont compacts, simples à utiliser et souvent très adaptés aux débutants.
+            Ils sont généralement composés d’une batterie et d’une cartouche, avec résistance intégrée ou remplaçable.
           </p>
+
           <ul>
-            <li>Formats discrets, faciles</li>
-            <li>Tirage serré / semi-serré (MTL/RDL)</li>
-            <li>Faible puissance → souvent compatibles avec nicotine plus élevée</li>
+            <li>Format discret et facile à transporter.</li>
+            <li>Utilisation simple, souvent peu de réglages.</li>
+            <li>Tirage souvent serré ou semi-serré : MTL / RDL.</li>
+            <li>Puissance généralement faible à modérée.</li>
+            <li>Souvent adaptés à des dosages de nicotine plus élevés.</li>
           </ul>
 
-          <div class="sectionTitle">3) Clearomiseurs</div>
-          <p>
-            Le clearomiseur est le réservoir (liquide + résistance). Les résistances se changent séparément.
-            Il offre souvent plus de réglages.
-          </p>
-          <div class="warn">
-            <strong>Point clé :</strong> choisir un clearomiseur cohérent avec le tirage recherché (serré vs aérien).
-          </div>
-
-          <div class="sectionTitle">4) Puissance (watts)</div>
-          <p>
-            La puissance est l’énergie envoyée à la résistance. Plus c’est élevé, plus ça chauffe et plus ça fait de vapeur.
-            Trop haut = risque de brûler le coton → goût de brûlé.
-          </p>
-          <ul>
-            <li>Puissance toujours adaptée à la résistance</li>
-            <li>La résistance a une <strong>plage recommandée</strong> (à montrer au client)</li>
-          </ul>
-
-          <div class="sectionTitle">5) Valeur de résistance (ohms)</div>
-          <p>
-            La valeur en ohms influence le type de vape :
-          </p>
-          <ul>
-            <li><strong>Ohms élevés</strong> → tirage serré, puissance plus faible</li>
-            <li><strong>Ohms bas</strong> → plus de vapeur, puissance plus élevée</li>
-          </ul>
-
-          <div class="sectionTitle">6) Adapter matériel & nicotine (règle STOOM)</div>
           <div class="callout">
-            <strong>Règle d’or :</strong> plus la nicotine est élevée, moins le matériel doit être puissant.
+            <strong>Idéal pour :</strong> fumeur débutant, client qui veut quelque chose de simple,
+            discret, efficace et proche de la sensation cigarette.
           </div>
+
+          <div class="sectionTitle">3) Les clearomiseurs</div>
+
           <p>
-            Un matériel trop puissant avec un taux élevé peut donner un hit trop fort, irriter, et rendre la vape désagréable.
-            À l’inverse, un matériel trop faible avec une nicotine trop basse peut ne pas satisfaire le fumeur.
+            Le clearomiseur est le réservoir qui contient le liquide et la résistance.
+            Contrairement à beaucoup de cartouches de pods, les résistances peuvent généralement être remplacées séparément.
+          </p>
+
+          <p>
+            Les clearomiseurs offrent souvent davantage de possibilités :
+            réglage d’airflow, choix de résistances, capacité plus importante ou rendu aromatique plus poussé.
+          </p>
+
+          <div class="warn">
+            <strong>Point clé :</strong> choisir un clearomiseur cohérent avec le tirage recherché.
+            Tous les clearomiseurs ne conviennent pas à tous les profils.
+          </div>
+
+          <details>
+            <summary>
+              <div class="sumLeft">
+                <div class="sumTitle">Clearomiseur MTL</div>
+                <div class="sumSub">Tirage serré • faible puissance • nicotine plus élevée possible</div>
+              </div>
+              <div class="chev">⌄</div>
+            </summary>
+
+            <div class="dBody">
+              <p>
+                Adapté aux clients qui recherchent une sensation proche de la cigarette,
+                avec une consommation de liquide modérée et un dosage de nicotine plus élevé.
+              </p>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <div class="sumLeft">
+                <div class="sumTitle">Clearomiseur RDL / DL</div>
+                <div class="sumSub">Tirage plus aérien • plus de vapeur • nicotine plus faible</div>
+              </div>
+              <div class="chev">⌄</div>
+            </summary>
+
+            <div class="dBody">
+              <p>
+                Adapté aux clients qui veulent davantage de vapeur, un tirage plus ouvert
+                et un dosage de nicotine généralement plus faible.
+              </p>
+            </div>
+          </details>
+
+          <div class="sectionTitle">4) La puissance : les watts</div>
+
+          <p>
+            La puissance correspond à l’énergie envoyée dans la résistance. Elle est exprimée en watts.
+            Plus la puissance est élevée, plus la résistance chauffe et plus la production de vapeur augmente.
+          </p>
+
+          <div class="warn">
+            <strong>Attention :</strong> trop de puissance peut brûler le coton de la résistance,
+            provoquer un goût de brûlé et détériorer la résistance.
+          </div>
+
+          <ul>
+            <li>La puissance doit toujours respecter la plage recommandée par le fabricant.</li>
+            <li>La plage de watts doit être montrée au client si elle est visible sur la résistance ou la boîte.</li>
+            <li>Le vendeur doit régler le matériel avec le client avant qu’il parte.</li>
+          </ul>
+
+          <div class="sectionTitle">5) La valeur de résistance : les ohms</div>
+
+          <p>
+            La valeur d’une résistance est exprimée en ohms (Ω).
+            Elle influence directement le tirage, la puissance utilisée, la vapeur et le dosage de nicotine adapté.
+          </p>
+
+          <div class="tableWrap">
+            <div class="scrollX">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Type de résistance</th>
+                    <th>Style de vape</th>
+                    <th>Puissance</th>
+                    <th>Nicotine</th>
+                    <th>Profil client</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Ohms élevés</td>
+                    <td>Tirage serré, souvent MTL</td>
+                    <td>Faible</td>
+                    <td>Plus élevée possible</td>
+                    <td>Débutant, fumeur, sensation cigarette</td>
+                  </tr>
+                  <tr>
+                    <td>Ohms intermédiaires</td>
+                    <td>Tirage semi-aérien, souvent RDL</td>
+                    <td>Modérée</td>
+                    <td>Moyenne</td>
+                    <td>Client qui veut un compromis confort / vapeur</td>
+                  </tr>
+                  <tr>
+                    <td>Ohms bas</td>
+                    <td>Tirage aérien, souvent DL</td>
+                    <td>Plus élevée</td>
+                    <td>Plus faible</td>
+                    <td>Vapoteur expérimenté ou recherche de vapeur</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="sectionTitle">6) Adapter matériel et nicotine : règle STOOM</div>
+
+          <div class="callout">
+            <strong>Règle d’or :</strong><br>
+            Plus le taux de nicotine est élevé, moins le matériel doit être puissant.
+            Plus le taux est faible, plus le matériel peut être puissant.
+          </div>
+
+          <p>
+            Un matériel trop puissant avec un taux élevé peut provoquer un hit trop fort,
+            des irritations, un inconfort ou une sensation de surdosage.
+          </p>
+
+          <p>
+            À l’inverse, un matériel trop faible avec une nicotine trop basse peut ne pas satisfaire les besoins du fumeur.
+            Le client peut alors vapoter beaucoup sans être satisfait ou revenir vers la cigarette.
           </p>
 
           <details open>
@@ -572,45 +674,84 @@ Le rôle du vendeur est d'accompagner le client afin d'éviter ces situations.
               </div>
               <div class="chev">⌄</div>
             </summary>
+
             <div class="dBody">
               <ul>
-                <li>Débutant + besoin nicotine élevé → <strong>pod MTL</strong> / faible puissance</li>
-                <li>Client à faible nicotine → matériel plus puissant possible</li>
-                <li>Client veut “plus de vapeur” → vérifier baisse nicotine / réglages adaptés</li>
+                <li>Débutant avec besoin nicotine élevé → pod MTL ou matériel peu puissant.</li>
+                <li>Client à faible nicotine → matériel plus puissant possible si le tirage lui convient.</li>
+                <li>Client qui veut plus de vapeur → vérifier si le dosage doit être baissé.</li>
+                <li>Client qui tousse ou trouve le hit trop fort → vérifier puissance, nicotine et tirage.</li>
               </ul>
             </div>
           </details>
 
-          <div class="sectionTitle">7) Erreurs fréquentes</div>
+          <div class="sectionTitle">7) Autonomie, simplicité et usage quotidien</div>
+
+          <p>
+            Le bon matériel n’est pas seulement une question de puissance.
+            Il doit aussi correspondre à la vie quotidienne du client.
+          </p>
+
+          <ul>
+            <li>Client souvent en déplacement → autonomie et remplissage simple.</li>
+            <li>Client débutant → simplicité, peu de réglages, faible risque d’erreur.</li>
+            <li>Client distrait ou peu technique → cartouches simples, pods ou réglages automatiques.</li>
+            <li>Client vapoteur confirmé → réglages plus avancés possibles.</li>
+          </ul>
+
+          <div class="callout">
+            <strong>Question utile :</strong> “Vous voulez quelque chose de très simple ou vous aimez pouvoir régler votre matériel ?”
+          </div>
+
+          <div class="sectionTitle">8) Les erreurs fréquentes</div>
+
           <div class="danger">
             <ul>
-              <li>Proposer un matériel trop puissant à un débutant</li>
-              <li>Nicotine élevée + matériel très aérien = hit trop fort / irritation</li>
-              <li>Ne pas expliquer l’amorçage d’une résistance neuve</li>
-              <li>Ne pas régler la puissance avec le client</li>
+              <li>Proposer un matériel trop puissant à un débutant.</li>
+              <li>Associer nicotine élevée et matériel très aérien.</li>
+              <li>Ne pas expliquer l’amorçage d’une résistance neuve.</li>
+              <li>Ne pas régler la puissance avec le client.</li>
+              <li>Vendre un matériel complexe à quelqu’un qui veut de la simplicité.</li>
+              <li>Oublier de proposer les résistances ou cartouches nécessaires.</li>
             </ul>
+          </div>
+
+          <div class="callout">
+            <strong>Conclusion :</strong> le meilleur matériel n’est pas le plus puissant.
+            C’est celui que le client utilisera correctement, confortablement et durablement.
           </div>
 
         </div>
       </section>
 
-      <!-- SIDEBAR -->
       <aside class="panel">
         <div class="panelHead">
           <h2>Checklist conseil matériel</h2>
         </div>
+
         <div class="panelBody">
           <p><strong>Avant de vendre</strong>, je valide :</p>
+
           <ul class="check">
-            <li>profil fumeur + objectif (arrêt / réduction)</li>
-            <li>tirage souhaité (serré / semi / aérien)</li>
-            <li>nicotine cohérente avec le matériel</li>
-            <li>plage watts montrée + réglée</li>
-            <li>amorçage expliqué</li>
+            <li>Profil fumeur et objectif : arrêt, réduction ou confort.</li>
+            <li>Nombre de cigarettes par jour et moments clés.</li>
+            <li>Tirage souhaité : serré, semi-aérien ou aérien.</li>
+            <li>Nicotine cohérente avec le matériel.</li>
+            <li>Puissance réglée et plage watts expliquée.</li>
+            <li>Amorçage expliqué clairement.</li>
+            <li>Résistances ou cartouches de rechange proposées.</li>
+            <li>Autonomie adaptée au rythme du client.</li>
           </ul>
 
           <div class="warn" style="margin-top:12px;">
-            <strong>Phrase simple :</strong> “Nicotine forte = petite puissance. Nicotine faible = puissance possible.”
+            <strong>Phrase simple :</strong><br>
+            “Nicotine forte = petite puissance. Nicotine faible = puissance possible.”
+          </div>
+
+          <div class="callout" style="margin-top:12px;">
+            <strong>Phrase conseil :</strong><br>
+            “Je vous oriente vers ce matériel parce qu’il correspond à votre profil,
+            à votre tirage et au dosage dont vous avez besoin.”
           </div>
 
           <a class="btn" href="analyse-client.html" style="width:100%; justify-content:center; margin-top:12px;">
