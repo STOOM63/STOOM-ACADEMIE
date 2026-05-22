@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Comprendre la cigarette électronique</title>
+
+<link rel="stylesheet" href="../style.css">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Académie STOOM — Comprendre la vape</title>
+
+  <!-- Si ton ../style.css écrase le design, commente la ligne ci-dessous -->
+  <!-- <link rel="stylesheet" href="../style.css"> -->
+
+  <style>
+    :root{
+      --bg0:#070c18;
+      --bg1:#0a1222;
+      --line:rgba(255,255,255,.10);
+      --text:#eaf0ff;
+      --muted:#b7c3ff;
+      --muted2:#cdd7ff;
+      --accent:#4da3ff;
+      --accent2:#2bd9a8;
+      --warn:#ffcc66;
+      --bad:#ff6b6b;
+      --shadow:0 12px 30px rgba(0,0,0,.35);
+      --shadow2:0 18px 55px rgba(0,0,0,.45);
+      --r:18px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(900px 450px at 12% 10%, rgba(77,163,255,.22), transparent 60%),
+        radial-gradient(850px 420px at 88% 18%, rgba(43,217,168,.16), transparent 60%),
+        radial-gradient(900px 520px at 50% 120%, rgba(255,255,255,.06), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:1100px; margin:0 auto; padding:22px; }
+
+    /* Topbar */
+    .topbar{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .crumbs{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      color:rgba(183,195,255,.85);
+      font-size:13px;
+    }
+    .crumbs a{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      padding:8px 10px;
+      border-radius:12px;
+    }
+    .crumbs a:hover{ background:rgba(255,255,255,.06); }
+
+    .btn{
+      border:1px solid rgba(77,163,255,.35);
+      background:rgba(77,163,255,.10);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:750;
+      font-size:13px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      cursor:pointer;
+      transition:.18s;
+      user-select:none;
+    }
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(77,163,255,.16);
+      box-shadow:0 14px 30px rgba(0,0,0,.25);
+    }
+    .btn.secondary{
+      border-color:var(--line);
+      background:rgba(255,255,255,.04);
+      font-weight:650;
+    }
+    .btn.secondary:hover{ background:rgba(255,255,255,.06); }
+
+    /* Hero */
+    .hero{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border-radius:calc(var(--r) + 6px);
+      padding:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(600px 240px at 15% 0%, rgba(77,163,255,.25), transparent 60%),
+        radial-gradient(520px 220px at 90% 30%, rgba(43,217,168,.18), transparent 60%);
+      pointer-events:none;
+      opacity:.8;
+    }
+    .hero > *{ position:relative; }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:var(--muted2);
+      font-size:13px;
+      margin-bottom:10px;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 4px rgba(77,163,255,.16);
+    }
+    h1{ margin:0; font-size:24px; letter-spacing:.2px; line-height:1.15; }
+    .sub{ margin:10px 0 0 0; color:var(--muted); font-size:14px; line-height:1.6; max-width:85ch; }
+
+    .pillRow{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .pill{
+      font-size:12px;
+      color:rgba(234,240,255,.92);
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.12);
+      padding:6px 10px;
+      border-radius:999px;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+    }
+    .pDot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--accent2);
+      box-shadow:0 0 0 4px rgba(43,217,168,.12);
+    }
+
+    /* Layout */
+    .layout{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:14px;
+      align-items:start;
+    }
+    .panel{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .panelHead{
+      padding:14px 14px 10px 14px;
+      border-left:4px solid var(--accent);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .panelHead h2{ margin:0; font-size:15px; letter-spacing:.2px; }
+    .panelBody{
+      padding:0 14px 14px 14px;
+      color:var(--muted2);
+      font-size:14px;
+      line-height:1.75;
+    }
+
+    /* Mobile readability */
+    .panelBody p{ margin:10px 0; }
+    .panelBody ul{ margin:8px 0 12px 18px; padding:0; }
+    .panelBody li{ margin:7px 0; }
+    .sectionTitle{
+      margin:14px 0 6px 0;
+      color:#fff;
+      font-weight:850;
+      font-size:13px;
+      letter-spacing:.2px;
+    }
+
+    .callout{
+      border:1px solid rgba(43,217,168,.25);
+      background:rgba(43,217,168,.08);
+      border-radius:14px;
+      padding:12px;
+      margin:12px 0;
+      color:rgba(234,240,255,.95);
+    }
+    .warn{
+      border:1px solid rgba(255,204,102,.25);
+      background:rgba(255,204,102,.08);
+      border-radius:14px;
+      padding:12px;
+      margin:12px 0;
+      color:rgba(234,240,255,.95);
+    }
+    .danger{
+      border:1px solid rgba(255,107,107,.25);
+      background:rgba(255,107,107,.08);
+      border-radius:14px;
+      padding:12px;
+      margin:12px 0;
+      color:rgba(234,240,255,.95);
+    }
+
+    details{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.10);
+      border-radius:14px;
+      margin:10px 0;
+      overflow:hidden;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      padding:12px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .sumLeft{ min-width:0; }
+    .sumTitle{ font-weight:850; font-size:13px; color:#fff; line-height:1.25; }
+    .sumSub{ font-size:12px; color:rgba(183,195,255,.85); margin-top:4px; line-height:1.35; }
+    .chev{
+      width:32px;height:32px;border-radius:12px;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      flex:0 0 auto;
+    }
+    details[open] .chev{
+      background:rgba(77,163,255,.12);
+      border-color:rgba(77,163,255,.35);
+    }
+    .dBody{ padding:0 12px 12px 12px; }
+
+    /* Mini cards */
+    .miniGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap:10px;
+      margin-top:10px;
+    }
+    .mini{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-radius:14px;
+      padding:12px;
+    }
+    .mini h3{
+      margin:0 0 6px 0;
+      font-size:13px;
+      color:#fff;
+      font-weight:900;
+    }
+    .mini p{
+      margin:0;
+      font-size:13px;
+      line-height:1.55;
+      color:rgba(183,195,255,.92);
+    }
+
+    .check{
+      list-style:none;
+      margin:10px 0 0 0;
+      padding:0;
+    }
+    .check li{
+      margin:10px 0;
+      padding-left:26px;
+      position:relative;
+    }
+    .check li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      color:var(--accent2);
+      font-weight:900;
+    }
+
+    footer{
+      margin:18px 0 6px 0;
+      text-align:center;
+      color:rgba(183,195,255,.75);
+      font-size:12px;
+      line-height:1.5;
+    }
+
+    @media (max-width:900px){
+      .layout{ grid-template-columns: 1fr; }
+    }
+    @media (max-width:700px){
+      .miniGrid{ grid-template-columns: 1fr; }
+    }
+    @media (max-width:600px){
+      .wrap{ padding:12px; }
+      h1{ font-size:20px; }
+      .sub{ font-size:13px; }
+      .btn{ width:100%; justify-content:center; }
+      .topbar{ gap:10px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<section class="modules">
+
+<div class="card">
+
+<h2>Principe de fonctionnement</h2>
+
+<p>
+
+La cigarette électronique est un dispositif électronique conçu pour vaporiser un liquide appelé e-liquide.
+
+Contrairement à la cigarette traditionnelle, il n'y a pas de combustion.
+
+Dans une cigarette classique, le tabac brûle à une température pouvant dépasser 800 degrés et produit de nombreuses substances toxiques issues de cette combustion.
+
+La cigarette électronique fonctionne différemment.
+
+Un liquide est chauffé à une température beaucoup plus basse afin de produire un aérosol qui est inhalé par l'utilisateur.
+
+Ce fonctionnement repose sur plusieurs éléments essentiels : une batterie, une résistance, un réservoir et un e-liquide.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>La batterie</h2>
+
+<p>
+
+La batterie fournit l'énergie nécessaire au fonctionnement de la cigarette électronique.
+
+Elle alimente la résistance qui va chauffer le liquide.
+
+Les batteries peuvent être intégrées ou utiliser des accus amovibles.
+
+La puissance délivrée par la batterie influence directement la quantité de vapeur produite.
+
+Plus la puissance est élevée, plus la résistance chauffe et plus la production de vapeur est importante.
+
+Cependant une puissance trop élevée peut provoquer un goût de brûlé et détériorer la résistance.
+
+Le réglage de la puissance doit donc toujours être adapté à la résistance utilisée.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>La résistance</h2>
+
+<p>
+
+La résistance est l'élément qui permet de chauffer le liquide.
+
+Elle est composée d'un fil métallique appelé coil entouré d'un matériau absorbant appelé coton.
+
+Le coton absorbe le e-liquide présent dans le réservoir.
+
+Lorsque la batterie envoie de l'énergie dans la résistance, le fil métallique chauffe et vaporise le liquide contenu dans le coton.
+
+La résistance est une pièce consommable.
+
+Elle doit être remplacée régulièrement car le coton finit par s'encrasser avec le temps.
+
+Une résistance usée peut produire un goût de brûlé ou une vapeur moins agréable.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>La valeur de la résistance</h2>
+
+<p>
+
+La valeur d'une résistance est exprimée en ohms.
+
+Cette valeur influence la manière dont la vape va fonctionner.
+
+Les résistances avec une valeur élevée sont généralement utilisées pour des tirages serrés avec une puissance faible.
+
+Les résistances avec une valeur plus basse permettent de produire davantage de vapeur et sont utilisées avec des puissances plus élevées.
+
+Le choix de la résistance doit toujours être cohérent avec le type de tirage et le taux de nicotine utilisé.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>L'airflow</h2>
+
+<p>
+
+L'airflow correspond au système de circulation de l'air dans la cigarette électronique.
+
+Il permet de régler la quantité d'air qui entre dans l'appareil lors de l'inhalation.
+
+Un airflow fermé produit un tirage serré similaire à celui d'une cigarette.
+
+Un airflow ouvert produit un tirage plus aérien et une production de vapeur plus importante.
+
+Le réglage de l'airflow influence fortement l'expérience de vape et doit être adapté au type de tirage recherché.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>Production de vapeur</h2>
+
+<p>
+
+La quantité de vapeur produite dépend de plusieurs facteurs.
+
+La puissance utilisée.
+
+La valeur de la résistance.
+
+La quantité d'air qui circule dans l'appareil.
+
+La composition du liquide.
+
+Les liquides contenant davantage de glycérine végétale produisent généralement plus de vapeur.
+
+Les liquides contenant davantage de propylène glycol produisent généralement une vapeur plus discrète mais offrent souvent un meilleur rendu des saveurs.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>Les erreurs fréquentes</h2>
+
+<p>
+
+Certaines erreurs sont fréquentes chez les nouveaux utilisateurs.
+
+Utiliser une puissance trop élevée pour la résistance.
+
+Ne pas amorcer correctement une résistance neuve.
+
+Utiliser un taux de nicotine trop élevé avec un matériel puissant.
+
+Ouvrir trop l'airflow avec un tirage prévu pour être serré.
+
+Le rôle du vendeur est d'expliquer ces points afin d'éviter les mauvaises expériences.
+
+</p>
+
+</div>
+
+
+
+</section>
+
+  <div class="wrap">
+
+    <div class="topbar">
+      <div class="crumbs">
+        <a href="../index.html">← Accueil</a>
+        <span>•</span>
+        <span>Module</span>
+      </div>
+      <a class="btn secondary" href="quiz.html">Aller au quiz</a>
+    </div>
+
+    <header class="hero">
+      <div class="kicker"><span class="dot"></span>Académie STOOM • Module</div>
+      <h1>Comprendre la cigarette électronique</h1>
+      <p class="sub">
+        Ici tu apprends le fonctionnement “simple et propre” : pas de combustion,
+        une batterie qui alimente une résistance, un liquide chauffé, et un réglage cohérent.
+      </p>
+      <div class="pillRow">
+        <span class="pill"><span class="pDot"></span>Batterie</span>
+        <span class="pill">Résistance</span>
+        <span class="pill">Airflow</span>
+        <span class="pill">Vapeur</span>
+      </div>
+    </header>
+
+    <main class="layout">
+
+      <!-- CONTENU -->
+      <section class="panel">
+        <div class="panelHead">
+          <h2>Le contenu du module</h2>
+        </div>
+        <div class="panelBody">
+
+          <div class="sectionTitle">1) Principe de fonctionnement</div>
+          <p>
+            La cigarette électronique vaporise un liquide (e-liquide). Contrairement à la cigarette,
+            il n’y a pas de combustion.
+          </p>
+          <p>
+            Une cigarette classique brûle du tabac à très haute température et produit de nombreuses substances
+            liées à cette combustion. La vape chauffe un liquide à une température beaucoup plus basse,
+            pour produire un aérosol inhalé.
+          </p>
+
+          <div class="callout">
+            <strong>En 1 phrase :</strong> batterie → résistance → chauffe du liquide → aérosol.
+          </div>
+
+          <div class="miniGrid">
+            <div class="mini">
+              <h3>Batterie</h3>
+              <p>Fournit l’énergie (watts) envoyée à la résistance.</p>
+            </div>
+            <div class="mini">
+              <h3>Résistance</h3>
+              <p>Coil + coton : vaporise le liquide contenu dans le coton.</p>
+            </div>
+            <div class="mini">
+              <h3>Réservoir</h3>
+              <p>Contient l’e-liquide et alimente la résistance.</p>
+            </div>
+            <div class="mini">
+              <h3>E-liquide</h3>
+              <p>PG/VG + arômes + (nicotine optionnelle).</p>
+            </div>
+          </div>
+
+          <div class="sectionTitle">2) La batterie</div>
+          <p>
+            La batterie alimente la résistance. Elle peut être intégrée (pod) ou fonctionner avec accus amovibles.
+          </p>
+          <p>
+            La puissance réglée (en watts) influence la quantité de vapeur : plus c’est haut, plus ça chauffe.
+          </p>
+          <div class="warn">
+            <strong>Attention :</strong> trop de watts → coton brûle → goût de brûlé → résistance HS.
+          </div>
+          <p>
+            Le réglage doit toujours être adapté à la résistance utilisée (plage constructeur).
+          </p>
+
+          <div class="sectionTitle">3) La résistance (coil + coton)</div>
+          <p>
+            La résistance chauffe le liquide. Elle contient un fil (coil) entouré de coton.
+            Le coton s’imbibe d’e-liquide, puis le coil chauffe et vaporise le liquide.
+          </p>
+          <div class="callout">
+            <strong>Important :</strong> la résistance est une pièce consommable → elle se change régulièrement.
+          </div>
+          <p>Une résistance en fin de vie peut provoquer :</p>
+          <ul>
+            <li>goût altéré</li>
+            <li>vapeur moins agréable</li>
+            <li>goût de brûlé</li>
+          </ul>
+
+          <div class="sectionTitle">4) Valeur de résistance (ohms)</div>
+          <p>
+            La valeur (Ω) influence le style de vape.
+          </p>
+
+          <details open>
+            <summary>
+              <div class="sumLeft">
+                <div class="sumTitle">Ohms élevés (souvent MTL)</div>
+                <div class="sumSub">Serré • faible puissance • nicotine plus élevée possible</div>
+              </div>
+              <div class="chev">⌄</div>
+            </summary>
+            <div class="dBody">
+              <ul>
+                <li>tirage plus serré</li>
+                <li>puissance faible</li>
+                <li>consommation de liquide plus faible</li>
+              </ul>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <div class="sumLeft">
+                <div class="sumTitle">Ohms bas (souvent DL)</div>
+                <div class="sumSub">Aérien • puissance élevée • nicotine plus faible</div>
+              </div>
+              <div class="chev">⌄</div>
+            </summary>
+            <div class="dBody">
+              <ul>
+                <li>vape plus aérienne</li>
+                <li>puissance plus élevée</li>
+                <li>plus de vapeur → nicotine généralement plus basse</li>
+              </ul>
+            </div>
+          </details>
+
+          <div class="sectionTitle">5) L’airflow</div>
+          <p>
+            L’airflow règle la quantité d’air qui entre dans l’appareil pendant l’inhalation.
+          </p>
+          <ul>
+            <li><strong>Airflow fermé</strong> → tirage serré (proche cigarette)</li>
+            <li><strong>Airflow ouvert</strong> → tirage aérien (plus de vapeur)</li>
+          </ul>
+          <div class="callout">
+            <strong>À expliquer au client :</strong> l’airflow change la sensation, pas “la qualité du liquide”.
+          </div>
+
+          <div class="sectionTitle">6) Production de vapeur : ce qui la fait varier</div>
+          <p>La vapeur dépend de plusieurs facteurs :</p>
+          <ul>
+            <li>puissance (watts)</li>
+            <li>résistance (ohms)</li>
+            <li>airflow (ouvert/fermé)</li>
+            <li>liquide (PG/VG)</li>
+          </ul>
+          <div class="warn">
+            <strong>Rappel :</strong> VG = plus de vapeur (souvent) • PG = vapeur plus discrète mais saveurs souvent plus nettes.
+          </div>
+
+          <div class="sectionTitle">7) Erreurs fréquentes (à prévenir)</div>
+          <div class="danger">
+            <ul>
+              <li>Watts trop élevés pour la résistance</li>
+              <li>Résistance neuve non amorcée</li>
+              <li>Nicotine élevée + matériel trop puissant</li>
+              <li>Airflow incohérent avec le tirage voulu</li>
+            </ul>
+          </div>
+
+          <div class="callout">
+            <strong>Mission vendeur :</strong> expliquer 2 réglages clés (watts + airflow) et l’amorçage.
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SIDEBAR -->
+      <aside class="panel">
+        <div class="panelHead">
+          <h2>Mini script vendeur</h2>
+        </div>
+        <div class="panelBody">
+          <div class="callout">
+            “Ici, on ne brûle rien. La batterie envoie de l’énergie dans la résistance,
+            qui chauffe le liquide pour faire un aérosol. Le bon réglage évite les soucis.”
+          </div>
+
+          <div class="sectionTitle">Checklist explication au client</div>
+          <ul class="check">
+            <li>montrer où se règle la puissance</li>
+            <li>expliquer l’airflow</li>
+            <li>expliquer l’amorçage (attendre, petites bouffées)</li>
+            <li>dire quand changer la résistance</li>
+          </ul>
+
+          <a class="btn" href="tirages.html" style="width:100%; justify-content:center; margin-top:12px;">
+            Module suivant : Types de tirage →
+          </a>
+        </div>
+      </aside>
+
+    </main>
+
+    <footer>
+      Académie STOOM — Module Comprendre la vape • Support interne
+    </footer>
+
+  </div>
+</body>
+</html>
